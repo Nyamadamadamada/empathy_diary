@@ -1,0 +1,223 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'ZenMaruGothic';
+  src: url('/fonts/Zen_Maru_Gothic/ZenMaruGothic-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ZenMaruGothic';
+  src: url('/fonts/Zen_Maru_Gothic/ZenMaruGothic-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+.zenMaru-regular {
+  font-family: 'ZenMaruGothic';
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'ZenMaruGothic';
+  src: url('/fonts/Zen_Maru_Gothic/ZenMaruGothic-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'chigfont';
+  src: url('/fonts/chigfont/chigfont.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'honokaMaru';
+  src: url('/fonts/honoka-marugo2-1/Honoka-Shin-Maru-Gothic_R.otf') format('otf');
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+/* フォント用クラス */
+.zenMaru-light {
+  font-family: 'ZenMaruGothic';
+  font-weight: 300;
+}
+
+.zenMaru-regular {
+  font-family: 'ZenMaruGothic';
+  font-weight: 400;
+}
+
+.zenMaru-bold {
+  font-family: 'ZenMaruGothic';
+  font-weight: 700;
+}
+
+.chigfont {
+  font-family: 'chigfont';
+}
+
+.honokaMaru {
+  font-family: 'honokaMaru';
+}
+
+body {
+  margin: 0;
+  font-family:
+    -apple-system,
+    'system-ui',
+    'Hiragino Kaku Gothic ProN',
+    'Hiragino Sans',
+    Meiryo,
+    sans-serif,
+    'Segoe UI Emoji' 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+#gradient {
+  color: white;
+  background-size: 200% 200%;
+  background-position: 0% 0%;
+  animation: moveGradient 5s ease-in-out infinite alternate;
+  border-radius: 8px;
+}
+
+@keyframes moveGradient {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+/* react-transition-groupのフェードCSS */
+.page-enter {
+  opacity: 0;
+}
+.page-enter-active {
+  opacity: 1;
+  transition:
+    opacity 300ms,
+    transform 300ms;
+}
+.page-exit {
+  opacity: 1;
+}
+.page-exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
+}
+
+.selected::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40px; /* 最初はボタンと同じサイズ */
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.15); /* 少し濃い波紋色（透明黒） */
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  z-index: -1;
+  animation: spread 0.6s ease-out forwards;
+}
+
+@keyframes spread {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(3);
+    opacity: 0;
+  }
+}
+
+/* 気分チェックイン トランジションアニメーション */
+.mood-fade-enter {
+  opacity: 0;
+  translate: 0 -30px;
+}
+.mood-fade-enter-active {
+  opacity: 1;
+  translate: 0 0px;
+  transition:
+    opacity 500ms ease-in-out,
+    translate 500ms ease-in-out;
+}
+.mood-fade-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+.mood-fade-exit-active {
+  opacity: 0;
+  transform: scale(1);
+  transition:
+    opacity 300ms ease,
+    transform 300ms ease;
+}
+
+/* マーカーアニメーション */
+.marker {
+  /* マーカーを引く
+  rgba(255, 153, 0,0.5) の部分はマーカーの色を指定しています。
+　実装される際は、お好きな色、透明度をお入れ下さい。 */
+  background: linear-gradient(transparent 80%, rgba(255, 153, 0, 0.5) 80%); /* マーカーを引く */
+
+  /* インライン属性を指定する */
+  display: inline;
+}
+
+/* スライダー */
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+/* スライダーのナビゲーションを外に出す */
+/* https://komari.co.jp/column/14235/#i-6 */
+.slider__wrapper {
+  position: relative;
+}
+
+.swiper-button-prev {
+  left: -30px !important;
+}
+
+.swiper-button-next {
+  right: -30px !important;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: gray !important;
+}
+
+/* モフの手紙の部分 */
+.mohu-note {
+  border: solid 1px #e6e6e6;
+  background-color: #fff;
+}
+
+.mohu-note-sen {
+  background-image: linear-gradient(180deg, rgba(100, 100, 100, 0) 0%, rgba(100, 100, 100, 0) 98%, #9e9e9e 100%);
+  background-size: 100% 2em;
+  background-position-y: 2em; /* ← これがポイント */
+  line-height: 2em;
+  padding: 2em 1em 0.2em 1em;
+}
