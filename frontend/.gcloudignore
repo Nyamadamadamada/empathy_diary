@@ -1,0 +1,9 @@
+# index.js、package*.json、dist以外いらない
+.git
+.gitignore
+node_modules/
+npm-debug.log
+.DS_Store
+*.env
+app
+compose.yml

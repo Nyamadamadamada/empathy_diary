@@ -1,0 +1,6 @@
+env
+.env
+.env.local.dist
+.dockerignore
+compose.yml
+Dockerfile.local

@@ -19,7 +19,7 @@ dummy_diaries = [
     DiaryEntry(
         id=1,
         unread=False,
-        title="初めての投稿",
+        title="初めての投稿です。",
         date="2025-05-01",
         content="今日はとても良い日でした。公園でゆっくり読書をしました。",
         mood="happy",

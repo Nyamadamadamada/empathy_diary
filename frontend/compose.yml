@@ -1,0 +1,11 @@
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - '8080:8080'
+    volumes:
+      - ./index.js:/usr/src/app/index.js
+      - ./dist:/usr/src/app/dist
+      # コンテナ内の node_modules を優先（マウント対象から除外）
+      - /usr/src/app/node_modules
