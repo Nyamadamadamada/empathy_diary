@@ -14,13 +14,7 @@
   <a href="https://github.com/yourusername/rakuraku-diary"><img src="https://img.shields.io/github/stars/yourusername/rakuraku-diary?style=social"></a>
 </p>
 
-## ✨ 特徴
-
-- 📝 **選択式日記** — 質問に答えるだけで、今日の出来事が自然な文章に。
-- 🐶 **モフのお返事** — 日記を読んだ"モフ"がやさしく返信してくれる癒し機能。
-- 🔍 **メタ認知分析** — 書いた日記の内容を AI が分析。自分のパターンや傾向が見えるかも？
-
-> ※ メタ認知分析はデモ機能として実装中です。
+<br>
 
 ## 🌐 アクセスリンク
 
@@ -28,9 +22,13 @@
 - ✍️ [Zenn 解説記事](https://your-zenn-link.com)
 - 🌐 [デプロイ済み Web アプリ](https://your-app-link.com)
 
+<br>
+
 ## 🧰 　アーキテクチャ図
 
   <img src="./docs/img/fig.png" alt="構成図" >
+
+<br>
 
 ## 🛠 セットアップ
 
@@ -56,5 +54,5 @@ docker compose up -d
 
 ## 🐾 Special Thanks
 
-このアプリは、「第 2 回 AI Agent Hackathon with Google Cloud ハッカソン」 にて開発されました。
+このアプリは、「第 2 回 AI Agent Hackathon with Google Cloud ハッカソン」 にて開発されました。<br>
 素敵なイベントをありがとうございます 💖
