@@ -1,6 +1,6 @@
 <p align="center">
   <img src="./docs/img/loading.png" alt="らくらく日記" width="200" ><br>
-  <img src="./docs/img/logo.png" alt="ロゴ" width="300" style="margin-top:-20px">
+  <img src="./docs/img/logo.png" alt="ロゴ" width="300" style="margin-top:-30px">
 </p>
 
 <p align="center">
@@ -28,13 +28,9 @@
 - ✍️ [Zenn 解説記事](https://your-zenn-link.com)
 - 🌐 [デプロイ済み Web アプリ](https://your-app-link.com)
 
-## 🧰 技術スタック
+## 🧰 　アーキテクチャ図
 
-| フロントエンド | バックエンド | インフラ |
-| | - | -- |
-| React / Vite | FastAPI / Python | Docker / GCP |
-| Tailwind CSS | OpenAI API | Firebase Auth |
-| Zustand | PostgreSQL | GitHub Actions |
+  <img src="./docs/img/fig.png" alt="構成図" >
 
 ## 🛠 セットアップ
 
@@ -43,7 +39,7 @@
 - Node.js >= 20
 - Docker / Git
 
-### フロントエンド起動
+#### フロントエンド起動
 
 ```bash
 cd frontend
@@ -51,43 +47,14 @@ npm install
 npm run dev
 ```
 
-### バックエンド起動
+#### バックエンド起動
 
 ```bash
 cd backend
 docker compose up -d
 ```
 
-## 🧪 テスト
-
-```bash
-# フロントエンド
-cd frontend
-npm run test
-
-# バックエンド
-cd ../backend
-pytest
-```
-
-## 📸 スクリーンショット
-
-<p align="center">
-  <img src="./docs/img/screenshot1.png" width="400">
-  <img src="./docs/img/screenshot2.png" width="400">
-</p>
-
 ## 🐾 Special Thanks
 
 このアプリは、「第 2 回 AI Agent Hackathon with Google Cloud ハッカソン」 にて開発されました。
 素敵なイベントをありがとうございます 💖
-
-## 📮 お問い合わせ
-
-- GitHub: [@yourusername](https://github.com/yourusername)
-- Email: [n.yamadamadamada@gmail.com
-  ](mailto:n.yamadamadamada@gmail.com)
-
-## 📝 ライセンス
-
-MIT License
