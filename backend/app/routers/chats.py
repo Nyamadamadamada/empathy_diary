@@ -24,7 +24,7 @@ def judge_emotion(
     text: OneLineText, service: EmotionClassifier = Depends(get_emotion_classifer)
 ):
     # TODO: 節約
-    return GeminiResponseEmotion(id="HAPPY")
+    # return GeminiResponseEmotion(id="HAPPY")
     return service.classify_emotion(text)
 
 
@@ -57,15 +57,15 @@ async def create_reply(
     text_info: TextInfo, service: CreateReply = Depends(get_create_reply)
 ):
     # TODO: 節約
-    return Reply(
-        reply="こんにちは。今日は良い天気ですね。こんにちは。今日は良い天気ですね。こんにちは。今日は良い天気ですね。",
-        entities={
-            "PERSON": ["両親", "家族", "母", "父", "虜"],
-            "ORGANIZATION": ["イオン"],
-            "CONSUMER_GOOD": ["かき氷", "氷", "ふわふわかき氷", "箱", "機械"],
-            "EVENT": ["攻防戦", "買い物"],
-        },
-    )
+    # return Reply(
+    #     reply="こんにちは。今日は良い天気ですね。こんにちは。今日は良い天気ですね。こんにちは。今日は良い天気ですね。",
+    #     entities={
+    #         "PERSON": ["両親", "家族", "母", "父", "虜"],
+    #         "ORGANIZATION": ["イオン"],
+    #         "CONSUMER_GOOD": ["かき氷", "氷", "ふわふわかき氷", "箱", "機械"],
+    #         "EVENT": ["攻防戦", "買い物"],
+    #     },
+    # )
 
     reply = ""
     entities = None
