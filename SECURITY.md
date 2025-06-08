@@ -1,21 +1,15 @@
 # Security Policy
 
-## Supported Versions
+## 報告方法
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+このプロジェクトに脆弱性を発見した場合は、以下のメールアドレスにご連絡ください
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
+📧 n.yamadamadamada@gmail.com
 
-## Reporting a Vulnerability
+公開Issueではなく、できるだけ非公開な方法でご連絡をお願いします。
 
-Use this section to tell people how to report a vulnerability.
+## サポート対象のバージョン
 
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+現在サポート中のバージョンは以下のとおりです。
+
+- v1.0.0（ハッカソン提出版）
