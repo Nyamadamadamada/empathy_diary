@@ -1,14 +1,14 @@
 import { GoogleAuthProvider, signInWithPopup, signInWithRedirect } from 'firebase/auth';
 import { FcGoogle } from 'react-icons/fc';
 import { useNavigate } from 'react-router-dom';
-import { useAuthContext } from '~/components/contexts/AuthContext';
+import { useUserContext } from '~/components/contexts/UserContext';
 import { useSignIn } from '~/components/contexts/UserContext';
 
 export const SignInButton = () => {
   const navigate = useNavigate();
 
   const provider = new GoogleAuthProvider();
-  const { auth } = useAuthContext();
+  const { auth } = useUserContext();
   const { signIn } = useSignIn();
 
   const handleClick = () => {

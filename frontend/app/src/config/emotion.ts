@@ -1,4 +1,4 @@
-import { EMOTION_TYPE, GraphData, NodeEdgeDataSet, NodeType } from '../types/emotion';
+import { EMOTION_TYPE, NodeEdgeDataSet, NodeType } from '../types/emotion';
 
 export const EMOTION = {
   HAPPY: 'HAPPY',
@@ -10,6 +10,57 @@ export const EMOTION = {
   SURPRISED: 'SURPRISED',
   SAD: 'SAD',
   NEUTRAL: 'NEUTRAL',
+};
+
+export function isEmotion(value: string): value is EMOTION_TYPE {
+  return Object.values(EMOTION).includes(value as EMOTION_TYPE);
+}
+export const moodMap: Record<string, 'happy' | 'meh' | 'frown'> = {
+  喜び: 'happy',
+  愛: 'happy',
+  恐怖: 'frown',
+  驚き: 'meh',
+  悲しみ: 'frown',
+  嫌い: 'frown',
+  怒り: 'frown',
+  関心: 'meh',
+  ふつう: 'meh',
+  安心: 'happy',
+  楽しい: 'happy',
+  スッキリ: 'happy',
+  穏やか: 'happy',
+  信頼: 'happy',
+  認める: 'happy',
+  許す: 'happy',
+  キュン: 'happy',
+  好き: 'happy',
+
+  不安: 'frown',
+  ざわざわ: 'frown',
+  心配: 'frown',
+
+  意外: 'meh',
+  パニック: 'frown',
+  戸惑う: 'meh',
+
+  切ない: 'frown',
+  泣ける: 'frown',
+  悲壮: 'frown',
+
+  うんざり: 'frown',
+  めんどう: 'frown',
+  敵視: 'frown',
+
+  イライラ: 'frown',
+  モヤモヤ: 'frown',
+  ぶちギレ: 'frown',
+
+  期待: 'happy',
+  わくわく: 'happy',
+  ドキドキ: 'meh',
+
+  退屈: 'meh',
+  何とも思わない: 'meh',
 };
 
 export const idLabelMap: Record<string, string> = {
@@ -49,7 +100,7 @@ export const idLabelMap: Record<string, string> = {
   SAD_3: '悲壮',
 
   DISGUSTED_1: 'うんざり',
-  DISGUSTED_2: '関わりたくない',
+  DISGUSTED_2: 'めんどう',
   DISGUSTED_3: '敵視',
 
   ANGRY_1: 'イライラ',
@@ -58,8 +109,7 @@ export const idLabelMap: Record<string, string> = {
 
   INTEREST_1: '期待',
   INTEREST_2: 'わくわく',
-  INTEREST_3: '気になる',
-  INTEREST_4: 'ドキドキ',
+  INTEREST_3: 'ドキドキ',
 
   NEUTRAL_1: '退屈',
   NEUTRAL_2: '何とも思わない',
@@ -201,7 +251,7 @@ const sadNodes = ['切ない', '泣ける', '悲壮'].map((label, idx) =>
   createSubNode({ emotion: 'SAD', idSuffix: `${idx + 1}`, label }),
 );
 
-const disgustedNodes = ['うんざり', '関わりたくない', '敵視'].map((label, idx) =>
+const disgustedNodes = ['うんざり', 'めんどう', '敵視'].map((label, idx) =>
   createSubNode({ emotion: 'DISGUSTED', idSuffix: `${idx + 1}`, label }),
 );
 
@@ -209,7 +259,7 @@ const angryNodes = ['イライラ', 'モヤモヤ', 'ぶちギレ'].map((label, 
   createSubNode({ emotion: 'ANGRY', idSuffix: `${idx + 1}`, label }),
 );
 
-const interestNodes = ['期待', 'わくわく', '気になる', 'ドキドキ'].map((label, idx) =>
+const interestNodes = ['期待', 'わくわく', 'ドキドキ'].map((label, idx) =>
   createSubNode({ emotion: 'INTEREST', idSuffix: `${idx + 1}`, label }),
 );
 

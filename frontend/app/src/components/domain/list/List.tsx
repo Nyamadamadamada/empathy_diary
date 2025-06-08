@@ -1,23 +1,27 @@
 import React from 'react';
 import { DiaryItem } from './Item';
+import { UserDiary } from '~/components/contexts/EntityContext';
 
-type DiaryEntry = {
-  id: number;
-  title: string;
+export type DiaryEntry = {
+  id: string;
   date: string;
+  title: string;
   content: string;
-  mood: string;
-  tags: string[];
+  mood: 'happy' | 'meh' | 'frown';
+  emotion: string;
+  // tags: Set<string>;
+  unRead: boolean;
+  reply?: string;
 };
 
 type Props = {
   filterTag: string | null;
   filterMood: string | null;
-  filteredEntries: DiaryEntry[];
+  filteredEntries: UserDiary[];
   toggleMood: (mood: string) => void;
   toggleTag: (tag: string) => void;
-  handleDelete: (diaryId: number) => void;
-  handleCopy: () => void;
+  handleDelete: (diaryId: string) => void;
+  handleCopy: (text: string) => void;
   resetFilters: () => void;
 };
 
@@ -35,17 +39,12 @@ function ListDiary({
     <div className="bg-white min-h-screen p-6 text-gray-800 w-full">
       <h1 className="text-2xl font-bold mb-6">あなたの日記一覧</h1>
 
-      {(filterTag || filterMood) && (
+      {filterMood && (
         <div className="mb-4 text-sm text-gray-600 flex items-center gap-4">
           <span>絞り込み中:</span>
           {filterMood && (
             <button onClick={resetFilters} className="px-2 py-1 bg-gray-200 rounded">
-              気分: {filterMood} ×
-            </button>
-          )}
-          {filterTag && (
-            <button onClick={resetFilters} className="px-2 py-1 bg-gray-200 rounded">
-              タグ: #{filterTag} ×
+              内容: {filterMood} ×
             </button>
           )}
         </div>
@@ -57,10 +56,11 @@ function ListDiary({
         ) : (
           filteredEntries.map((entry) => (
             <DiaryItem
-              key={entry.id}
-              entry={entry}
+              key={entry.diary.id}
+              entry={entry.diary}
+              handleCopy={handleCopy}
               onMoodClick={toggleMood}
-              onTagClick={toggleTag}
+              // onTagClick={toggleTag}
               handleDelete={handleDelete}
             />
           ))

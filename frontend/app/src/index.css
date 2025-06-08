@@ -44,6 +44,13 @@
   font-style: normal;
   font-display: block;
 }
+svg {
+  overflow: visible;
+}
+
+textarea {
+  scroll-padding-bottom: 0.4rem;
+}
 
 /* フォント用クラス */
 .zenMaru-light {
@@ -92,7 +99,7 @@ code {
   color: white;
   background-size: 200% 200%;
   background-position: 0% 0%;
-  animation: moveGradient 5s ease-in-out infinite alternate;
+  animation: moveGradient 4s ease-in-out infinite alternate;
   border-radius: 8px;
 }
 
@@ -172,14 +179,34 @@ code {
     transform 300ms ease;
 }
 
-/* マーカーアニメーション */
+/* マーカー */
 .marker {
-  /* マーカーを引く
-  rgba(255, 153, 0,0.5) の部分はマーカーの色を指定しています。
-　実装される際は、お好きな色、透明度をお入れ下さい。 */
   background: linear-gradient(transparent 80%, rgba(255, 153, 0, 0.5) 80%); /* マーカーを引く */
+  display: inline;
+}
 
-  /* インライン属性を指定する */
+.marker-FAMILY {
+  background: linear-gradient(transparent 80%, rgba(249, 115, 22, 0.5) 80%);
+  display: inline;
+}
+
+.marker-WORK {
+  background: linear-gradient(transparent 80%, rgba(13, 57, 217, 0.5) 80%);
+  display: inline;
+}
+
+.marker-FRIENDS {
+  background: linear-gradient(transparent 80%, rgba(16, 185, 129, 0.5) 80%);
+  display: inline;
+}
+
+.marker-SERVICE {
+  background: linear-gradient(transparent 80%, rgba(139, 92, 246, 0.5) 80%);
+  display: inline;
+}
+
+.marker-OTHER {
+  background: linear-gradient(transparent 80%, rgba(113, 113, 122, 0.5) 80%);
   display: inline;
 }
 
@@ -221,4 +248,88 @@ code {
   background-position-y: 2em; /* ← これがポイント */
   line-height: 2em;
   padding: 2em 1em 0.2em 1em;
+}
+
+/* 言葉のSVG */
+
+/* mood
+------------------------------------------------------------ */
+
+.mood_chart_number {
+  font-family: Oswald-Medium, sans-serif;
+  font-size: 30px;
+  font-size: 3rem;
+  line-height: 1;
+  letter-spacing: 0em;
+}
+.mood_chart_number .small {
+  font-weight: 400;
+  font-size: 8px;
+  font-size: 0.8rem;
+  line-height: 1;
+  letter-spacing: 0.05em;
+}
+
+.mood-circle {
+  transform-origin: center; /* アニメーションの中心点を設定 */
+}
+/* mood-circle クラスが circle 要素に直接付与されていることを前提とします */
+.mood-circle {
+  /* transform-originをcircleの中心に設定 */
+  transform-box: fill-box; /* transform-originの基準を要素の境界ボックスに設定 */
+  transform-origin: center; /* 要素の中心を原点にする */
+}
+
+/* 各円のアニメーション */
+.mood-circle.circle-1 {
+  animation: scaleCircle1 3s ease-in infinite alternate;
+}
+
+.mood-circle.circle-2 {
+  animation: scaleCircle2 5s ease-in-out infinite alternate;
+}
+
+.mood-circle.circle-3 {
+  animation: scaleCircle3 3.1s ease-in infinite alternate;
+}
+
+.mood-circle.circle-4 {
+  animation: scaleCircle4 4.3s ease-in-out infinite alternate;
+}
+
+/* Keyframes 定義 */
+@keyframes scaleCircle1 {
+  from {
+    transform: scale(0.9); /* 少し小さめから開始 */
+  }
+  to {
+    transform: scale(1.05); /* 少し大きめまで拡大 */
+  }
+}
+
+@keyframes scaleCircle2 {
+  from {
+    transform: scale(0.95);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes scaleCircle3 {
+  from {
+    transform: scale(0.85);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes scaleCircle4 {
+  from {
+    transform: scale(0.9);
+  }
+  to {
+    transform: scale(1.08);
+  }
 }

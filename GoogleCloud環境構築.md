@@ -96,3 +96,5 @@ gcloud run deploy backend \
  --platform=managed \
  --allow-unauthenticated \
  --quiet
+
+Cloud Natural Language API を有効にする

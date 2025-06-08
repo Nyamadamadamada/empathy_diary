@@ -3,7 +3,7 @@ import { getAgeGroup } from '~/config/category';
 
 type Prop = {
   name: string;
-  handleAddGenderAge: (gender: string, rangeAge: string) => void;
+  handleAddGenderAge: (gender: string, rangeAge: number, inputAgeRange: string) => void;
 };
 export default function Step2({ name, handleAddGenderAge }: Prop) {
   const [selectedGender, setSelectedGender] = useState('');
@@ -25,13 +25,13 @@ export default function Step2({ name, handleAddGenderAge }: Prop) {
     // バリデーション成功
     setError(null);
     const rangeAge = getAgeGroup(ageNum);
-    handleAddGenderAge(selectedGender, rangeAge); // 成功時のアクション（必要に応じて調整）
+    handleAddGenderAge(selectedGender, ageNum, rangeAge); // 成功時のアクション（必要に応じて調整）
   };
 
   const options = [
-    { label: '男性', value: 'man' },
-    { label: '女性', value: 'woman' },
-    { label: 'その他', value: 'other' },
+    { label: '男性', value: '男性' },
+    { label: '女性', value: '女性' },
+    { label: 'その他', value: '性別不明' },
   ];
 
   return (
@@ -76,7 +76,7 @@ export default function Step2({ name, handleAddGenderAge }: Prop) {
           <div className="flex flex-col md:flex-row gap-5">
             {options.map((option) => (
               <button
-                key={option.value}
+                key={option.label}
                 value={option.value}
                 onClick={() => setSelectedGender(option.value)}
                 className={`text-lg min-w-[86px]
@@ -95,7 +95,7 @@ export default function Step2({ name, handleAddGenderAge }: Prop) {
           <div className="mt-20">
             <button
               onClick={handleCheck}
-              className="bg-slate-600  text-white font-bold text-sm px-4 py-2 rounded-full transition-colors hover:bg-gray-900 cursor-pointer"
+              className="bg-slate-600  text-white font-bold px-4 py-2 rounded-full transition-colors hover:bg-gray-900 cursor-pointer"
             >
               <span>設定を完了する</span>
             </button>

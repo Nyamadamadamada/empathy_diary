@@ -3,10 +3,8 @@ from google import genai
 import json
 import os
 
-from app.models.emotion import GeminiResponseEmotion
 from app.prompts.chat import EMOTION_CSV_CONTENT
-
-# os.environを用いて環境変数を表示させます
+from app.models.diary import GeminiResponseEmotion
 
 
 class EmotionClassifier:
@@ -18,8 +16,8 @@ class EmotionClassifier:
 あなたは、文章の内容から感情を分類するAIアシスタントです。
 # 命令文
 次のステップで感情を分類してください。
-1. 提供された感情のリストの中から、textがどのemotionに該当するかを判別する
-2. 該当するemotionのvalueを出力形式に沿って出力する
+1. 感情のリストの中から、textがどのemotionに該当するかを判別する
+2. 該当するemotionのidを出力形式に沿って出力する
 
 # 感情のリスト
 {EMOTION_CSV_CONTENT}

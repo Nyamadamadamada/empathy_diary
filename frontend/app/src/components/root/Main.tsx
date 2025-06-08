@@ -1,13 +1,18 @@
 import { Router } from '~/components/router/Router';
 // TODO: 後々認証が必要になったら使う
 import { LoadingProvider } from '~/components/contexts/LoadingContext';
-// import { AuthProvider } from '~/components/contexts/AuthContext';
+import { UserProvider } from '~/components/contexts/UserContext';
+import { UserDiaryProvider } from '../contexts/EntityContext';
 
 function Main() {
   return (
     <main>
       <LoadingProvider>
-        <Router />
+        <UserProvider>
+          <UserDiaryProvider>
+            <Router />
+          </UserDiaryProvider>
+        </UserProvider>
       </LoadingProvider>
     </main>
   );

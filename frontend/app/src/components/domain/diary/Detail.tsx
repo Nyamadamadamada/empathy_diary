@@ -1,68 +1,69 @@
-import { Smile, Frown, Meh, ChevronLeft, Pencil, Copy, ChevronDown } from 'lucide-react';
+import { ChevronLeft, Copy, ChevronDown, Smile, Meh, Frown } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { DiaryEntry } from '~/types/emotion';
 import { useState } from 'react';
-
-const moodIcons = {
-  happy: <Smile className="text-yellow-400 w-6 h-6" />,
-  sad: <Frown className="text-blue-400 w-6 h-6" />,
-  meh: <Meh className="text-gray-400 w-6 h-6" />,
-};
+import DiaryEntity from './DiaryEntity';
+import { DiaryEntry } from '../list/List';
+import { EntityData } from '~/components/contexts/EntityContext';
 
 interface DiaryDetailProps {
   diary: DiaryEntry;
+  entities: EntityData;
   handleCopy: () => void;
-  handleEdit: () => void;
 }
 
-export default function DiaryDetail({ diary, handleCopy, handleEdit }: DiaryDetailProps) {
+const moodIcons = {
+  happy: (
+    <div className="group z-50 relative">
+      <Smile className="text-yellow-400 w-8 h-8" />
+      {/* SPでアイコンの下に表示、MD以上でアイコンの右に表示 */}
+      <div
+        className="z-50 absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[180px] // SPでの位置調整と最大幅設定
+                     md:top-auto md:left-auto md:translate-x-0 md:mb-0  // MD以上での位置調整
+                    bg-gray-700 text-white text-sm px-2 py-1 rounded whitespace-normal opacity-0 group-hover:opacity-100 transition pointer-events-none"
+      >
+        ポジティブよりの内容
+      </div>
+    </div>
+  ),
+  meh: (
+    <div className="group z-50 relative">
+      <Meh className="text-gray-400 w-8 h-8" />
+      {/* SPでアイコンの下に表示、MD以上でアイコンの右に表示 */}
+      <div
+        className="z-50 absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[250px] // SPでの位置調整と最大幅設定
+                     md:top-auto md:left-auto md:translate-x-0 md:mb-0  // MD以上での位置調整
+                    bg-gray-700 text-white text-sm px-2 py-1 rounded whitespace-normal opacity-0 group-hover:opacity-100 transition pointer-events-none"
+      >
+        ポジティブでもネガティブでもない内容
+      </div>
+    </div>
+  ),
+  frown: (
+    <div className="group z-50 relative">
+      <Frown className="text-blue-300 w-8 h-8" />
+      {/* SPでアイコンの下に表示、MD以上でアイコンの右に表示 */}
+      <div
+        className="z-50 absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[180px] // SPでの位置調整と最大幅設定
+                     md:top-auto md:left-auto md:translate-x-0 md:mb-0  // MD以上での位置調整
+                    bg-gray-700 text-white text-sm px-2 py-1 rounded whitespace-normal opacity-0 group-hover:opacity-100 transition pointer-events-none"
+      >
+        ネガティブよりの内容
+      </div>
+    </div>
+  ),
+};
+
+export default function DiaryDetail({ diary, handleCopy, entities }: DiaryDetailProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="w-full">
-      <h1 className="text-3xl font-bold text-center text-gray-900">2022/10/3</h1>
-
-      <div className="bg-white text-gray-800 flex justify-center my-10">
-        <div className="w-full border rounded-2xl shadow p-8">
-          <div className="mb-4">
-            <div className="flex justify-between items-start">
-              <h2 className="text-2xl font-bold mb-2">{diary.title}</h2>
-              <div className="flex gap-2 items-center">
-                <div onClick={handleCopy} className="cursor-pointer flex items-center">
-                  <Copy className="w-4 h-4" />
-                  <span className="text-sm ml-1">コピーする</span>
-                </div>
-                <div onClick={handleEdit} className="cursor-pointer flex items-center">
-                  <Pencil className="w-4 h-4" />
-                  <span className="text-sm ml-1">編集する</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex items-center text-sm text-gray-500 gap-4 mb-2">
-              <p>{diary.date}</p>
-              <div className="flex items-center gap-1">
-                {moodIcons[diary.mood]}
-                <span className="text-sm">Happyな気分</span>
-              </div>
-            </div>
-
-            <div className="flex flex-wrap gap-2 text-sm text-gray-500 mt-1">
-              {diary.tags.map((tag, idx) => (
-                <span key={idx} className="cursor-default">
-                  <span className="text-gray-400">#</span>
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <hr />
-
-          <div className="mt-6 whitespace-pre-wrap text-base leading-relaxed font-serif">{diary.content}</div>
-        </div>
+      <div className="flex items-center justify-center">
+        <h1 className="relative text-3xl flex gap-2 font-bold text-center text-gray-900">
+          {moodIcons[diary.mood]}
+          {diary.date}
+        </h1>
       </div>
-
       <div className="mohu-note mt-10 w-full  shadow p-8 transition-all duration-300">
         <button onClick={() => setIsOpen(!isOpen)} className="flex items-center justify-between w-full text-left">
           <div className="flex items-center space-x-3">
@@ -82,11 +83,7 @@ export default function DiaryDetail({ diary, handleCopy, handleEdit }: DiaryDeta
 
         {isOpen && (
           <div className="zenMaru-regular mohu-note-sen mt-4 animate-fade-fast">
-            <div className="">
-              こんにちは！モフです。 今日は君にとって素敵な1日になりますように。
-              ~~なことがあったんだね。それってもしかして「犬も歩けば棒に当たる」ってことかな？
-              たまにはのんびりして、モフモフしようね 🐶✨
-            </div>
+            <div className="whitespace-pre-wrap">{diary.reply}</div>
             <div className="text-right">
               <br />
               親愛なるモフより。
@@ -94,8 +91,47 @@ export default function DiaryDetail({ diary, handleCopy, handleEdit }: DiaryDeta
           </div>
         )}
       </div>
+      <div className="bg-white text-gray-800 flex flex-col justify-center my-10">
+        <div className="w-full border rounded-2xl shadow p-8">
+          <div className="mb-4">
+            <div className="flex justify-between items-start">
+              <h2 className="text-2xl font-bold mb-2">{diary.title}</h2>
+              <div className="flex gap-2 items-center">
+                <div onClick={handleCopy} className="cursor-pointer flex items-center">
+                  <Copy className="w-4 h-4" />
+                  <span className="text-sm ml-1">コピーする</span>
+                </div>
+              </div>
+            </div>
 
-      <div className="mt-10">
+            <div className="flex items-center text-sm text-gray-500 gap-4 mb-2">
+              <div className="flex items-center gap-1">
+                <span className="text-sm">気持ち：「{diary.emotion}」</span>
+              </div>
+            </div>
+
+            {/* <div className="flex flex-wrap gap-3 text-sm text-gray-500 mt-1">
+              {diary.tags.map((tag, idx) => (
+                <span key={idx} className="cursor-default">
+                  <span className="text-gray-400 mr-1">#</span>
+                  {tag}
+                </span>
+              ))}
+            </div> */}
+          </div>
+
+          <hr />
+
+          <div className="my-6 whitespace-pre-wrap text-base honokaMaru font-serif leading-[1.8rem]">
+            {diary.content}
+          </div>
+        </div>
+      </div>
+      <div className="bg-white text-gray-800 flex flex-col justify-center mx-10 mb-10">
+        <DiaryEntity entities={entities} />
+      </div>
+
+      <div className="mt-20 mb-16">
         <Link to="/history" className="text-sm text-gray-600 hover:underline flex items-center gap-1">
           <ChevronLeft className="w-4 h-4" />
           日記一覧へ

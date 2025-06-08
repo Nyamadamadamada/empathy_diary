@@ -11,20 +11,19 @@ class CreateDiary:
     def _build_prompt(self, text_info: TextInfo) -> str:
         return f"""
 あなたは、日記を添削するAIアシスタントです。
-# 命令文
-次のステップで200字程度の日記を作成してください。
-1. textの内容をそのままに、正しい日本語にする。
-2. emotionを「~と思った。」「~と感じた。」など短い文章で追加する。
-3. textから予想されるW5H1の文章を追加する。
-4. 文章をユーザー情報に即した口調にする。
-5. 生成した文章を出力する。
 
-# text
-{text_info.text}
-# emotion
-{text_info.emotion}
-# ユーザー情報
-{text_info.user.age}歳、{text_info.user.gender}
+## 命令文
+与えられた情報をもとに、自然な日記風の文章を200字程度で作成してください。
+
+**重要な指示：**
+- 箇条書きや構造化した形式は使わず、自然な文章で記述してください
+- 感情は文章の中に自然に織り込んでください（「〜と思った」「〜と感じた」など）
+- 状況説明も文章の一部として自然に含めてください
+- 一つの段落で完結した日記として仕上げてください
+
+## 入力データ
+* text: {text_info.text}
+* emotion: {text_info.emotion}
 """
 
     def _build_title_prompt(self, text_info: TextInfo) -> str:
@@ -43,7 +42,7 @@ textから50字程度の日記のタイトルを作成してください。な�
 
     async def create_diary(self, text_info: TextInfo) -> str:
         """
-        テキストの感情を分類し、その結果を返す
+        日記を添削する
         エラーが発生した場合は、空の文字列を返す
         """
         prompt = self._build_prompt(text_info)
@@ -56,8 +55,11 @@ textから50字程度の日記のタイトルを作成してください。な�
                     "response_schema": OneLineText,
                 },
             )
-
             data: OneLineText = response.parsed
+
+            print("テキスト")
+            print(data.text)
+
             return data.text
 
         except Exception as e:
@@ -67,7 +69,7 @@ textから50字程度の日記のタイトルを作成してください。な�
 
     async def create_diary_title(self, text_info: TextInfo) -> str:
         """
-        テキストの感情を分類し、その結果を返す
+        日記にタイトルを作成する
         エラーが発生した場合は、空の 文字列を返す
         """
         prompt = self._build_title_prompt(text_info)

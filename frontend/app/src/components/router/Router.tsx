@@ -5,22 +5,19 @@ import Sidebar from '../share/Sidebar';
 import Header from '../share/Header';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import { Loader } from 'lucide-react';
-import { useAuthState } from '../contexts/UserContext';
 import Home from '../screens/Home';
-
-const Loading = () => <p className="p-4 w-full h-full text-center">Loading...</p>;
 
 // const IndexScreen = lazy(() => import('~/components/screens/Index'));
 const Page404Screen = lazy(() => import('~/components/screens/404'));
 const ChatMessage = lazy(() => import('~/components/screens/Chat'));
 const ListDiary = lazy(() => import('~/components/screens/List'));
 const DiaryDetail = lazy(() => import('~/components/screens/DiaryDetail'));
-const DiaryEdit = lazy(() => import('~/components/screens/DiaryEdit'));
 const Setting = lazy(() => import('~/components/screens/Setting'));
 const Analysis = lazy(() => import('~/components/screens/Analysis'));
 const Privacy = lazy(() => import('~/components/screens/Privacy'));
 const Terms = lazy(() => import('~/components/screens/Terms'));
 const FirstSettings = lazy(() => import('~/components/screens/FirstSettings'));
+const Complete = lazy(() => import('~/components/screens/Complete'));
 
 function Layout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
@@ -46,7 +43,7 @@ function Layout() {
             <SwitchTransition>
               <CSSTransition key={location.pathname} nodeRef={nodeRef} timeout={300} classNames="page" unmountOnExit>
                 <div ref={nodeRef} className="w-full">
-                  <Suspense fallback={<Loading />}>{outlet}</Suspense>
+                  {outlet}
                 </div>
               </CSSTransition>
             </SwitchTransition>
@@ -72,18 +69,6 @@ export const Router = () => {
 };
 
 const InnerRouter = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const { state } = useAuthState();
-
-  const publicRoutes = ['/first-setting', '/privacy', '/terms'];
-
-  useEffect(() => {
-    if (state.state !== 'SIGNED_IN' && !publicRoutes.includes(location.pathname)) {
-      // navigate('/first-setting');
-    }
-  }, [state, location, navigate, publicRoutes]);
-
   const routes: RouteObject[] = [
     {
       path: '/',
@@ -110,6 +95,10 @@ const InnerRouter = () => {
           element: <Setting />,
         },
         {
+          path: 'complete',
+          element: <Complete />,
+        },
+        {
           path: '*',
           element: <Page404Screen />,
         },
@@ -127,10 +116,10 @@ const InnerRouter = () => {
       path: '/terms',
       element: <Terms />,
     },
-    {
-      path: '/history/:id/edit',
-      element: <DiaryEdit />,
-    },
+    // {
+    //   path: '/history/:id/edit',
+    //   element: <DiaryEdit />,
+    // },
     // {
     //   path: '/deleted-account',
     //   element: <DeletedAccount />,

@@ -4,3 +4,4 @@ env
 .dockerignore
 compose.yml
 Dockerfile.local
+credentials.json

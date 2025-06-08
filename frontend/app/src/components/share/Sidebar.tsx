@@ -1,17 +1,16 @@
-import { useState } from 'react';
-import { Link, matchPath, useLocation, useNavigate } from 'react-router-dom';
+import { Dispatch, SetStateAction } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import { useDiaries } from '~/hooks/useDiaries';
 import SidebarContents from '~/components/domain/sidebar/Contents';
+import { exampleDiares } from '~/config/example_diares';
 
-export default function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
+type Props = {
+  isSidebarOpen: boolean;
+  setIsSidebarOpen: Dispatch<SetStateAction<boolean>>;
+};
+
+export default function Sidebar({ isSidebarOpen, setIsSidebarOpen }: Props) {
   const navigate = useNavigate();
-  const location = useLocation();
-
-  const { diaries, loading, error } = useDiaries();
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
 
   const handleLinkClick = (path: string) => {
     // 遷移時タブレットならバーと閉じる
@@ -23,7 +22,7 @@ export default function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
 
   return (
     <SidebarContents
-      diaries={diaries}
+      diaries={exampleDiares}
       isSidebarOpen={isSidebarOpen}
       setIsSidebarOpen={setIsSidebarOpen}
       handleLinkClick={handleLinkClick}

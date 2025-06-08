@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MenuIcon, Settings, Plus, Heart } from 'lucide-react';
+import { MenuIcon, Settings, Plus, Heart, SearchCheck } from 'lucide-react';
 
 import SidebarList from '~/components/domain/sidebar/List';
 
@@ -63,10 +63,10 @@ export default function SidebarContents({ diaries, isSidebarOpen, setIsSidebarOp
                 onClick={() => {
                   handleLinkClick('/analysis');
                 }}
-                className="flex py-4 px-2 flex-col items-center justify-center bg-pink-100 text-pink-600 rounded-lg hover:bg-pink-200 transition-colors duration-200 cursor-pointer"
+                className="flex py-4 px-2 flex-col items-center justify-center bg-orange-100 text-orange-600 rounded-lg hover:bg-orange-200 transition-colors duration-200 cursor-pointer"
               >
-                <Heart className="w-8 h-8" />
-                <span className="text-3lg mt-1">感情メタ分析</span>
+                <SearchCheck className="w-8 h-8" />
+                <span className="text-3lg mt-1">メタ認知分析</span>
               </div>
             </div>
           </div>

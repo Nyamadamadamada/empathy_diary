@@ -46,8 +46,8 @@ export default function HeaderView({ isSidebarOpen }: { account: AccountEntry; i
     >
       <div className="flex justify-between items-center p-4">
         <Link to="/home" className="flex">
-        <img className='w-[30px] pr-1' src="/img/logo.png" />
-        <span className='zenMaru-bold text-lg'>らくらく日記</span>
+          <img className="w-[30px] pr-1" src="/img/logo.png" />
+          <span className="zenMaru-bold text-lg">らくらく日記</span>
         </Link>
       </div>
 

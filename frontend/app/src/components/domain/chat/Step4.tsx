@@ -1,25 +1,33 @@
 import { ChevronLeft } from 'lucide-react';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react'; // useRefは不要になるため削除
 import { MakingDiary } from '~/types';
 import { STEP_TYPE, STEP } from '~/types/step';
-import EditSpace from './EditSpace';
+import EditSpace from './EditSpace'; // もし使わないなら削除も検討
 
 type Prop = {
-  diary: MakingDiary;
-  handleFinish: (event: string) => void;
-  handleReturnStep: (step: STEP_TYPE) => void;
+  isLoading: boolean;
+  title: string;
+  setTitle: React.Dispatch<React.SetStateAction<string>>;
+  mainText: string;
+  setMainText: React.Dispatch<React.SetStateAction<string>>;
 };
 
-export default function Step4({ handleFinish, handleReturnStep }: Prop) {
-  const [title, setTitle] = useState('テストのタイトル');
-  const [mainText, setMainText] = useState('中身');
-  const [editedContent, setEditedContent] = useState('中身');
-  const editorRef = useRef<HTMLDivElement>(null);
+export default function Step4({ isLoading, title, setTitle, mainText, setMainText }: Prop) {
   const textareaRef = useRef(null);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      textareaRef.current?.focus();
+      textareaRef.current?.setSelectionRange(999, 999);
+    }, 800); // スクロールが終わった後にフォーカスさせる
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className="">
-      <div className="max-w-4xl mx-auto p-6 space-y-8 w-full">
+      <div className={`max-w-4xl mx-auto p-6 space-y-8 w-full ${isLoading ? 'pointer-events-none' : ''}`}>
+        {isLoading && (
+          <div className="absolute inset-0 bg-white bg-opacity-60 flex items-center justify-center z-10 rounded-lg" />
+        )}
         {/* モフのセリフセクション */}
         <div className="flex items-start space-x-8 w-full animate-fade-fast opacity-0 delay-200">
           <div className="flex flex-col items-center">
@@ -46,26 +54,25 @@ export default function Step4({ handleFinish, handleReturnStep }: Prop) {
 
         {/* 編集エリア */}
         <div className="mt-28 flex max-w-[960px] h-full mx-auto flex-col items-center justify-center px-4 sm:px-6 md:px-10 animate-fade-fast opacity-0 delay-700">
-          <textarea
+          <input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="タイトルを入力..."
-            className="h-[82px] px-4 w-full font-bold text-2xl text-gray-900 bg-transparent focus:outline-none placeholder-gray-400 mb-2 resize-none"
-            maxLength={70}
-            rows={1}
+            className="h-[82px] w-full font-bold text-2xl text-gray-900 bg-transparent focus:outline-none placeholder-gray-400 mb-2 resize-none"
+            maxLength={100}
             required
             spellCheck={false}
           />
-          <div className="p-4 max-w-2xl mx-auto flex flex-col xl:flex-row-reverse w-full h-full gap-4">
-            {/* テキスト入力欄 */}
-            <div
-              ref={editorRef}
-              contentEditable
-              suppressContentEditableWarning
-              className="honokaMaru border text-xl leading-[2.6] border-gray-300 rounded py-4 px-8 mb-96 min-h-[100px] h-full focus:outline-none focus:ring-2 focus:ring-gray-400 w-full"
-            >
-              テキストのデモです。
-            </div>
+          <div className="max-w-2xl mx-auto flex flex-col xl:flex-row-reverse w-full h-full gap-4">
+            <textarea
+              ref={textareaRef}
+              value={mainText}
+              onChange={(e) => setMainText(e.target.value)}
+              placeholder="今日の出来事を入力..."
+              className="honokaMaru border text-xl leading-[1.8] border-none rounded p-1 mb-10  h-full focus:outline-none focus:no-underline focus: w-full min-h-[200px] resize-y" // リサイズを許可
+              rows={10}
+              maxLength={5000}
+            />
           </div>
         </div>
       </div>

@@ -1,70 +1,22 @@
-import { createContext, ReactNode, useContext, useReducer } from 'react';
-import { User } from 'firebase/auth';
+import { createContext, useContext, useState, ReactNode } from 'react';
+import { User } from '~/types';
 
-type AuthActions = { type: 'SIGN_IN'; payload: { user: User } } | { type: 'SIGN_OUT' };
+type UserContextType = {
+  user: User;
+  setUser: (user: User) => void;
+};
 
-type AuthState =
-  | {
-      state: 'SIGNED_IN';
-      currentUser: User;
-    }
-  | {
-      state: 'SIGNED_OUT';
-    }
-  | {
-      state: 'UNKNOWN';
-    };
+const UserContext = createContext<UserContextType | undefined>(undefined);
 
-const AuthReducer = (state: AuthState, action: AuthActions): AuthState => {
-  switch (action.type) {
-    case 'SIGN_IN':
-      return {
-        state: 'SIGNED_IN',
-        currentUser: action.payload.user,
-      };
-    case 'SIGN_OUT':
-      return {
-        state: 'SIGNED_OUT',
-      };
+export const UserProvider = ({ children }: { children: ReactNode }) => {
+  const [user, setUser] = useState<User>({ name: 'ニッキー', age: 32, ageRange: '35_39', gender: '男性' });
+  return <UserContext.Provider value={{ user, setUser }}>{children}</UserContext.Provider>;
+};
+
+export const useUser = () => {
+  const context = useContext(UserContext);
+  if (!context) {
+    throw new Error('useUser must be used within a UserProvider');
   }
+  return context;
 };
-
-type AuthContextProps = {
-  state: AuthState;
-  dispatch: (value: AuthActions) => void;
-};
-
-export const AuthContext = createContext<AuthContextProps>({ state: { state: 'UNKNOWN' }, dispatch: (val) => {} });
-
-const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [state, dispatch] = useReducer(AuthReducer, { state: 'UNKNOWN' });
-
-  return <AuthContext.Provider value={{ state, dispatch }}>{children}</AuthContext.Provider>;
-};
-
-const useAuthState = () => {
-  const { state } = useContext(AuthContext);
-  return {
-    state,
-  };
-};
-
-const useSignIn = () => {
-  const { dispatch } = useContext(AuthContext);
-  return {
-    signIn: (user: User) => {
-      dispatch({ type: 'SIGN_IN', payload: { user } });
-    },
-  };
-};
-
-const useSignOut = () => {
-  const { dispatch } = useContext(AuthContext);
-  return {
-    signOut: () => {
-      dispatch({ type: 'SIGN_OUT' });
-    },
-  };
-};
-
-export { useAuthState, useSignIn, useSignOut, AuthProvider };

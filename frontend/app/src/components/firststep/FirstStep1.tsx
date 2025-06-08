@@ -27,24 +27,27 @@ export default function Step1({ handleAddName }: Prop) {
           </div>
 
           <div className="flex flex-col justify-center mt-2 zenMaru-regular leading-[1.8] text-xl ">
-            <p className="opacity-0  animate-fade-fast">はじめまして。 僕は「モフ」だよ。よろしくね。</p>
+            <p className="opacity-0  animate-fade-fast">はじめまして。 僕は「モフ」だよ。</p>
             <p className="opacity-0  animate-fade-fast delay-2000">これから、あなたの日記作りをお手伝いするよ。</p>
             <p className="opacity-0  animate-fade-fast delay-4000 font-bold">はじめに、お名前を聞いてもいいかな？</p>
           </div>
         </div>
 
         {/* 名前入力 */}
-        <div className="flex items-center gap-3 mt-6 animate-fade-fast opacity-0 delay-5000">
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => handleAddClick(e.target.value)}
-            maxLength={100}
-            placeholder="あなたのお名前"
-            className="flex-1 rounded-full px-4 py-2 border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
-          />
+        <div className="mt-6 animate-fade-fast opacity-0 delay-5000">
+          <div className="flex items-center gap-3 ">
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => handleAddClick(e.target.value)}
+              maxLength={100}
+              placeholder="あなたのお名前"
+              className="flex-1 rounded-full px-4 py-2 border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
+            />
 
-          <TextWatchButton originalText="" label="決定" currentText={name} onClick={() => handleAddName(name)} />
+            <TextWatchButton originalText="" label="決定" currentText={name} onClick={() => handleAddName(name)} />
+          </div>
+          <p className="text-sm mt-2 text-gray-500">※入力情報はサーバーに保存されません。</p>
         </div>
       </div>
     </div>

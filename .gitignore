@@ -70,3 +70,5 @@ node_modules/
 
 frontend/app/dist
 frontend/dist
+
+backend/credentials.json

@@ -4,14 +4,17 @@ import { FIRST_STEP, FIRST_STEP_TYPE } from '~/types/index';
 import FirstStep1 from '../firststep/FirstStep1';
 import FirstStep2 from '../firststep/FirstStep2';
 import FirstStep3 from '../firststep/FirstStep3';
+import { useUser } from '../contexts/UserContext';
+import { AgeRange, Gender } from '~/types/category';
 
 const FirstSettings = () => {
   const [shownSteps, setShownSteps] = useState<FIRST_STEP_TYPE[]>([FIRST_STEP.STEP1]);
 
   const [name, setName] = useState('');
   const [gender, setGender] = useState('');
-  const [age, setAge] = useState('');
-  const [error, setError] = useState('');
+  const [age, setAge] = useState(0);
+  const [ageRange, setAgeRange] = useState('');
+  const { setUser } = useUser();
 
   const stepRefs = useRef<Record<FIRST_STEP_TYPE, HTMLDivElement | null>>({
     STEP1: null,
@@ -33,14 +36,13 @@ const FirstSettings = () => {
     setName(inputName);
     addStep(FIRST_STEP.STEP2);
   };
-  const handleAddGenderAge = (inputGender: string, inputAge: string) => {
+  const handleAddGenderAge = (inputGender: Gender, inputAge: number, inputAgeRange: AgeRange) => {
     setGender(inputGender);
     setAge(inputAge);
+    setAgeRange(inputAgeRange);
+    setUser({ name, age: inputAge, ageRange: inputAgeRange, gender: inputGender });
+    console.log(name, inputAge, inputAgeRange, inputGender);
     addStep(FIRST_STEP.STEP3);
-  };
-
-  const handleFinishSetting = () => {
-    console.log('入力情報を保持する');
   };
 
   useEffect(() => {

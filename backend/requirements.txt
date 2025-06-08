@@ -3,3 +3,4 @@ pydantic-settings==2.8.1
 uvicorn==0.34.1
 python-dotenv
 google-genai
+google-cloud-language

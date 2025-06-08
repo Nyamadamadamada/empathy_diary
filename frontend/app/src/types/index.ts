@@ -1,15 +1,16 @@
+import { CHARA_TYPE } from '~/config/characters';
+import { AgeRange, Gender } from './category';
+
+export type User = {
+  name: string;
+  age: number;
+  ageRange: AgeRange;
+  gender: Gender;
+};
+
 export type MakingDiary = {
   title: string;
   content: string;
-};
-
-export type DiaryEntry = {
-  id: string;
-  date: string;
-  title: string;
-  content: string;
-  mood: string;
-  tags: Set<string>;
 };
 
 export type AccountEntry = {
@@ -26,3 +27,14 @@ export const FIRST_STEP = {
 };
 
 export type FIRST_STEP_TYPE = (typeof FIRST_STEP)[keyof typeof FIRST_STEP];
+
+type BioItem = {
+  label: string;
+  value: string;
+};
+
+export type CharaInfo = {
+  name: string;
+  category: CHARA_TYPE;
+  bios: BioItem[];
+};

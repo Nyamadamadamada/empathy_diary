@@ -1,7 +1,7 @@
 import os
 from app.services.classifier_emotion_service import EmotionClassifier
 from app.services.create_diary_service import CreateDiary
-from app.services.save_diary_service import SaveDiary
+from app.services.create_reply_service import CreateReply
 
 """
 依存注入に使う関数
@@ -18,6 +18,10 @@ def get_create_diary() -> CreateDiary:
     return CreateDiary(GEMINI_API_KEY)
 
 
-def get_save_diary() -> SaveDiary:
+def get_create_reply() -> CreateReply:
     GEMINI_API_KEY = os.environ["GEMINI_API_KEY"]
-    return SaveDiary(GEMINI_API_KEY)
+    return CreateReply(GEMINI_API_KEY)
+
+
+def get_entity() -> CreateReply:
+    return CreateReply()

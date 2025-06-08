@@ -1,7 +1,7 @@
 import { ChevronLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
-import { DiaryEntry } from '~/types/emotion';
+import { DiaryEntry } from '../list/List';
 
 interface DiaryEditProps {
   diary: DiaryEntry;
