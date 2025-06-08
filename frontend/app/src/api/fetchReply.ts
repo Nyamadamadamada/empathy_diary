@@ -11,13 +11,14 @@ export type FetchReplyType = {
  * モフの返事と感情分析結果を返す
  */
 export const fetchReply = async (emotion: string, text: string, userName: string): Promise<FetchReplyType> => {
+  const requestText = text.replace(/\r?\n/g, '');
   try {
     const res = await fetch(`${apiBase}/chats/reply`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ text, emotion, user_name: userName }),
+      body: JSON.stringify({ text: requestText, emotion, user_name: userName }),
     });
 
     if (!res.ok) {

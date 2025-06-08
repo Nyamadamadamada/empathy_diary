@@ -72,3 +72,5 @@ frontend/app/dist
 frontend/dist
 
 backend/credentials.json
+
+.DS_Store

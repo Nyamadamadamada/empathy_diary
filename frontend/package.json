@@ -8,7 +8,7 @@
     "doc": "docs"
   },
   "scripts": {
-    "serve": "node index.js"
+    "server": "node index.js"
   },
   "repository": {
     "type": "git",

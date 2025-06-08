@@ -1,4 +1,3 @@
-import { useUser } from '~/components/contexts/UserContext';
 import { addNewlineAfterPeriod } from '~/hooks';
 import { Gender } from '~/types/category';
 
@@ -19,13 +18,14 @@ export type FetchUser = {
  * @returns タイトルと日記テキスト
  */
 export const featchCreateDiary = async (emotion: string, text: string): Promise<CreateDiary | null> => {
+  const requestText = text.replace(/\r?\n/g, '');
   try {
     const res = await fetch(`${apiBase}/chats/fix-diary`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ emotion, text, user_name: '' }),
+      body: JSON.stringify({ emotion, text: requestText, user_name: '' }),
     });
 
     if (!res.ok) {

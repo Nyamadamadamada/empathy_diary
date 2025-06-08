@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export default function Step3() {
   return (
     <div className="mt-[30%] mb-[60%] w-full">
-      <div className="max-w-4xl mx-auto p-6 w-full opacity-0  animate-fade-fast delay-1000">
+      <div className="max-w-4xl mx-auto p-6 w-full opacity-0  animate-fade-fast delay-500">
         {/* セリフセクション */}
         <div className="flex items-start space-x-8 w-full">
           <div className="flex flex-col items-center">
