@@ -1,13 +1,16 @@
 from google import genai
 from google.cloud import language_v2
 
-from app.models.diary import OneLineText, TextInfo
+from app.models.diary import EmotionScore, OneLineText, TextInfo
 from app.models.entity import EntityNamesByType
 
 
 class CreateReply:
     def __init__(self, api_key: str):
         self.client = genai.Client(api_key=api_key)
+        self.language_client = language_v2.LanguageServiceClient()
+        self.document_type = language_v2.Document.Type.PLAIN_TEXT
+        self.encoding_type = language_v2.EncodingType.UTF8
 
     def _build_reply_prompt(self, text_info: TextInfo) -> str:
         return f"""
@@ -37,6 +40,7 @@ class CreateReply:
         """
         もふの返事を作成する
         """
+        # return ""
         prompt = self._build_reply_prompt(text_info)
         try:
             response = self.client.models.generate_content(
@@ -55,35 +59,28 @@ class CreateReply:
             print(f"Error classifying emotion: {e}. Returning empty OneLineText.")
             return ""
 
-    async def sanalyze_entities(self, text_content: str = "") -> None:
+    async def sanalyze_entities(self, text_content: str = "") -> EntityNamesByType:
         """
         Analyzes Entities in a string.
 
         Args:
         text_content: The text content to analyze
         """
+        # return EntityNamesByType()
         try:
-            client = language_v2.LanguageServiceClient()
-
             # Available types: PLAIN_TEXT, HTML
-            document_type_in_plain_text = language_v2.Document.Type.PLAIN_TEXT
 
             # Optional. If not specified, the language is automatically detected.
             # For list of supported languages:
             # https://cloud.google.com/natural-language/docs/languages
-            language_code = "ja"
             document = {
                 "content": text_content,
-                "type_": document_type_in_plain_text,
-                "language_code": language_code,
+                "type_": self.document_type,
+                "language_code": "ja",
             }
 
-            # Available values: NONE, UTF8, UTF16, UTF32.
-            # See https://cloud.google.com/natural-language/docs/reference/rest/v2/EncodingType.
-            encoding_type = language_v2.EncodingType.UTF8
-
-            response = client.analyze_entities(
-                request={"document": document, "encoding_type": encoding_type}
+            response = self.language_client.analyze_entities(
+                request={"document": document, "encoding_type": self.encoding_type}
             )
 
             target_types = {
@@ -103,5 +100,30 @@ class CreateReply:
             print(result)
             return EntityNamesByType(**result)
         except Exception as e:
-            print(f"エラー: {e}")
+            print(f"sanalyze_entitiesエラー: {e}")
             return EntityNamesByType()
+
+    async def analyze_sanalyze(self, text_content: str = "") -> EmotionScore:
+        """
+        Analyzes Emotion in a string.
+        """
+        # return EmotionScore(score=0, magnitude=0)
+        try:
+            document = {
+                "content": text_content,
+                "type_": self.document_type,
+                "language_code": "ja",
+            }
+
+            response = self.language_client.analyze_sentiment(
+                request={"document": document, "encoding_type": self.encoding_type}
+            )
+
+            return EmotionScore(
+                score="{:.3f}".format(response.document_sentiment.score),
+                magnitude="{:.3f}".format(response.document_sentiment.magnitude),
+            )
+
+        except Exception as e:
+            print(f"analyze_sanalyzeエラー: {e}")
+            return EmotionScore()

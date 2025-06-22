@@ -14,13 +14,13 @@ class User(BaseModel):
 
 
 class TextInfo(BaseModel):
-    text: str = Field(..., example="今日はとても良い一日でした。")
-    emotion: str = Field(..., example="joy")
+    text: str = Field(..., example="今日はとても良い一日でした。", max_length=1000)
+    emotion: str = Field(..., example="joy", max_length=50)
     user_name: Optional[str] = Field(..., example="ニッキー")
 
 
 class OneLineText(BaseModel):
-    text: str = Field(..., example="こんにちは！")
+    text: str = Field(..., example="こんにちは！", max_length=100)
 
 
 class Title(BaseModel):
@@ -35,6 +35,13 @@ class GuessDiary(BaseModel):
     title: str = Field(..., example="新しい家族")
 
 
+class EmotionScore(BaseModel):
+    score: float  # -1.0（ネガティブ）～1.0（ポジティブ）
+    magnitude: (
+        float  # 感情の振れ幅　0~ (値が大きいほど、ネガティブとポジティブのどちらもある)
+    )
+
+
 class Reply(BaseModel):
     """
     モフの返事とエンティティ
@@ -42,3 +49,4 @@ class Reply(BaseModel):
 
     reply: str = Field(..., example="新しい家族")
     entities: EntityNamesByType | None
+    emotion_score: EmotionScore
