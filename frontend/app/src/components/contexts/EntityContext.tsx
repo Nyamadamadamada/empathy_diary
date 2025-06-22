@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
-import { DiaryEntry } from '../domain/list/List';
+import { DiaryEntry } from '~/types';
 
 export type EntityData = {
   PERSON: Set<string>;
@@ -9,9 +9,15 @@ export type EntityData = {
   EVENT: Set<string>;
 };
 
+export type EmotionStore = {
+  score: number;
+  magnitude: number;
+};
+
 export type UserDiary = {
   diary: DiaryEntry;
   entities: EntityData;
+  emotionScore: EmotionStore;
 };
 
 export type UserDiaryContextType = {
@@ -37,6 +43,10 @@ const defaultEntity: UserDiary = {
     LOCATION: new Set(),
     CONSUMER_GOOD: new Set(),
     EVENT: new Set(),
+  },
+  emotionScore: {
+    score: 0,
+    magnitude: 0,
   },
 };
 

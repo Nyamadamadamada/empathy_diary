@@ -18,7 +18,14 @@ function DiaryDetailScreen() {
     alert('本文をコピーしました');
   };
 
-  return <DiaryDetail entities={diary.entities} diary={diary.diary} handleCopy={handleCopy} />;
+  return (
+    <DiaryDetail
+      entities={diary.entities}
+      diary={diary.diary}
+      emotionScore={diary.emotionScore}
+      handleCopy={handleCopy}
+    />
+  );
 }
 
 export default DiaryDetailScreen;

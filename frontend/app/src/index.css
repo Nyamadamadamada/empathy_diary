@@ -30,14 +30,6 @@
 }
 
 @font-face {
-  font-family: 'chigfont';
-  src: url('/fonts/chigfont/chigfont.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: block;
-}
-
-@font-face {
   font-family: 'honokaMaru';
   src: url('/fonts/honoka-marugo2-1/Honoka-Shin-Maru-Gothic_R.otf') format('otf');
   font-weight: 400;
@@ -66,10 +58,6 @@ textarea {
 .zenMaru-bold {
   font-family: 'ZenMaruGothic';
   font-weight: 700;
-}
-
-.chigfont {
-  font-family: 'chigfont';
 }
 
 .honokaMaru {
@@ -331,5 +319,79 @@ code {
   }
   to {
     transform: scale(1.08);
+  }
+}
+
+.btn {
+  display: inline-block;
+  text-decoration: none;
+}
+.btn {
+  background-position: right center;
+  background-size: 200% auto;
+  -webkit-animation: pulse 2ss infinite;
+  animation: ripple 3s infinite;
+  color: #fff;
+  background-color: #047857;
+}
+@keyframes ripple {
+  0% {
+    box-shadow: 0 0 0 0 #047857;
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgb(27 133 251 / 0%);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgb(27 133 251 / 0%); /* 後半50%は待機として静止状態 */
+  }
+}
+
+.zoomfade-enter {
+  opacity: 0;
+  transform: scale(0.85);
+}
+
+.zoomfade-enter-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.zoomfade-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.zoomfade-exit-active {
+  opacity: 1;
+  transform: scale(0.85);
+}
+
+.zoomfade-enter-active,
+.zoomfade-exit-active {
+  transition: opacity 500ms ease-in-out;
+  transition: transform 500ms ease-in-out;
+}
+
+.box {
+  /* アニメーションを適用 */
+  opacity: 0;
+  transform: rotate(-40deg);
+  animation: tilt-animation 1s forwards 0.8s; /* 1秒かけてアニメーションし、終了時の状態を維持 */
+  transform-origin: bottom center; /* 回転の中心を下中央に設定 */
+}
+
+/* アニメーションの定義 */
+@keyframes tilt-animation {
+  0% {
+    opacity: 0; /* アニメーション開始時は透明 */
+    transform: rotate(20deg); /* アニメーション開始時：0度 */
+  }
+  20% {
+    opacity: 1;
+    /* transform: rotate(0deg); アニメーション中間点：45度 */
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(-45deg); /* アニメーション終了時：-45度 */
   }
 }

@@ -57,11 +57,15 @@ export default function Characters() {
       });
 
       // ノード選択時のイベント(二層目を表示する)
+      let currentFirstLayerNodeId: string | null = null;
+
       network.on('click', (params: { nodes: string[] }) => {
         if (params.nodes.length === 0) return;
         const clickedNodeId = params.nodes[0];
         const info = getCharaByName(clickedNodeId);
         setCharaInfo(info);
+        if (clickedNodeId === currentFirstLayerNodeId) return;
+        currentFirstLayerNodeId = clickedNodeId;
 
         const graph = graphMap[clickedNodeId];
         if (!graph) return;
@@ -89,7 +93,7 @@ export default function Characters() {
       <div className="w-full shadow border border-gray-300 bg-white rounded-lg p-4 animate-fade-fast opacity-0 delay-700">
         <div style={{ height: '60vh', width: '100%' }} ref={ref} />
       </div>
-      <div className="w-full mt-5 p-8  border-2 border-gray-300 text-lg ">
+      <div className="w-full mt-5 p-4 md:p-8  border-2 border-gray-300 text-lg ">
         <div className="">
           {charaInfo ? (
             <div className="animate-fade-fast opacity-0">

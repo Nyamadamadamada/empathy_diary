@@ -10,9 +10,10 @@ type Prop = {
   setTitle: React.Dispatch<React.SetStateAction<string>>;
   mainText: string;
   setMainText: React.Dispatch<React.SetStateAction<string>>;
+  setIsError: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export default function Step4({ isLoading, title, setTitle, mainText, setMainText }: Prop) {
+export default function Step4({ isLoading, title, setTitle, mainText, setMainText, setIsError }: Prop) {
   const textareaRef = useRef(null);
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -23,13 +24,15 @@ export default function Step4({ isLoading, title, setTitle, mainText, setMainTex
   }, []);
 
   return (
-    <div className="">
-      <div className={`max-w-4xl mx-auto p-6 space-y-8 w-full ${isLoading ? 'pointer-events-none' : ''}`}>
+    <div className="mb-20 pb-20">
+      <div
+        className={`max-w-4xl mx-auto p-0 md:p-6 space-y-0 md:space-y-8 w-full ${isLoading ? 'pointer-events-none' : ''}`}
+      >
         {isLoading && (
           <div className="absolute inset-0 bg-white bg-opacity-60 flex items-center justify-center z-10 rounded-lg" />
         )}
         {/* モフのセリフセクション */}
-        <div className="flex items-start space-x-8 w-full animate-fade-fast opacity-0 delay-200">
+        <div className="flex flex-col md:flex-row items-center md:items-start space-x-0 md:space-x-8 w-full animate-fade-fast opacity-0 delay-200">
           <div className="flex flex-col items-center">
             <div className="w-20 h-20 overflow-hidden rounded-full relative flex-shrink-0">
               <img
@@ -50,6 +53,13 @@ export default function Step4({ isLoading, title, setTitle, mainText, setMainTex
               自由に修正してね。
             </p>
           </div>
+          {mainText.length > 1000 && (
+            <div className="absolute top-0 left-0 w-full h-full bg-red-100 flex items-center justify-center z-20">
+              <p className="zenMaru-regular text-xl font-medium leading-[1.8] text-red-600">
+                1000文字以内で入力してください。
+              </p>
+            </div>
+          )}
         </div>
 
         {/* 編集エリア */}
@@ -67,11 +77,14 @@ export default function Step4({ isLoading, title, setTitle, mainText, setMainTex
             <textarea
               ref={textareaRef}
               value={mainText}
-              onChange={(e) => setMainText(e.target.value)}
+              onChange={(e) => {
+                setIsError(e.target.value.length > 1000);
+                setMainText(e.target.value);
+              }}
               placeholder="今日の出来事を入力..."
               className="honokaMaru border text-xl leading-[1.8] border-none rounded p-1 mb-10  h-full focus:outline-none focus:no-underline focus: w-full min-h-[200px] resize-y" // リサイズを許可
               rows={10}
-              maxLength={5000}
+              maxLength={1000}
             />
           </div>
         </div>

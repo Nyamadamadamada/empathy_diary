@@ -1,5 +1,5 @@
-import { lazy, Suspense, useState, useMemo, createRef, RefObject, useEffect } from 'react';
-import { RouteObject, useRoutes, BrowserRouter, useLocation, useOutlet, useNavigate } from 'react-router-dom';
+import { lazy, Suspense, useState, useMemo, createRef, RefObject, LazyExoticComponent } from 'react';
+import { RouteObject, useRoutes, BrowserRouter, useLocation, useOutlet } from 'react-router-dom';
 import { ScrollToTop } from '../share/ScrollToTop';
 import Sidebar from '../share/Sidebar';
 import Header from '../share/Header';
@@ -41,7 +41,7 @@ function Layout() {
         <div id="scrollable" className="flex-1 overflow-auto mt-14">
           <div className="flex items-center m-auto max-w-[696px] w-full">
             <SwitchTransition>
-              <CSSTransition key={location.pathname} nodeRef={nodeRef} timeout={300} classNames="page" unmountOnExit>
+              <CSSTransition key={location.pathname} nodeRef={nodeRef} timeout={300} classNames="page">
                 <div ref={nodeRef} className="w-full">
                   {outlet}
                 </div>
@@ -67,6 +67,11 @@ export const Router = () => {
     </BrowserRouter>
   );
 };
+const wrapSuspense = (Component: LazyExoticComponent<() => JSX.Element>) => (
+  <Suspense fallback={<Loader className="animate-spin m-auto" />}>
+    <Component />
+  </Suspense>
+);
 
 const InnerRouter = () => {
   const routes: RouteObject[] = [
@@ -76,67 +81,52 @@ const InnerRouter = () => {
       children: [
         {
           path: '/home',
-          element: <Home />,
+          element: <Home />, // 通常読み込み
         },
         {
           path: '/history',
-          element: <ListDiary />,
+          element: wrapSuspense(ListDiary),
         },
         {
           path: '/history/:id',
-          element: <DiaryDetail />,
+          element: wrapSuspense(DiaryDetail),
         },
         {
           path: 'analysis',
-          element: <Analysis />,
+          element: wrapSuspense(Analysis),
         },
         {
           path: 'setting',
-          element: <Setting />,
+          element: wrapSuspense(Setting),
         },
         {
           path: 'complete',
-          element: <Complete />,
+          element: wrapSuspense(Complete),
         },
         {
           path: '*',
-          element: <Page404Screen />,
+          element: wrapSuspense(Page404Screen),
         },
       ],
     },
     {
       path: '/chat/step',
-      element: <ChatMessage />,
+      element: wrapSuspense(ChatMessage),
     },
     {
       path: '/privacy',
-      element: <Privacy />,
+      element: wrapSuspense(Privacy),
     },
     {
       path: '/terms',
-      element: <Terms />,
+      element: wrapSuspense(Terms),
     },
-    // {
-    //   path: '/history/:id/edit',
-    //   element: <DiaryEdit />,
-    // },
-    // {
-    //   path: '/deleted-account',
-    //   element: <DeletedAccount />,
-    // },
-    // {
-    //   path: '/login',
-    //   element: <Login />,
-    // },
     {
       path: '/first-setting',
-      element: <FirstSettings />,
+      element: wrapSuspense(FirstSettings),
     },
   ];
+
   const element = useRoutes(routes);
-  return (
-    <div>
-      <Suspense fallback={<Loader />}>{element}</Suspense>
-    </div>
-  );
+  return <>{element}</>;
 };

@@ -5,7 +5,7 @@ function Thinking() {
         <h1 className="text-2xl md:text-4xl font-bold ">処理中...</h1>
         {/* セリフセクション */}
         <div className="flex flex-col items-center">
-          <img src="/img/mofu/loading.gif" alt="キャラアイコン" className="w-40 h-full" />
+          <img src="/img/mofu/loading.gif" alt="キャラアイコン" className="w-[200px]  h-full" />
         </div>
       </div>
     </div>

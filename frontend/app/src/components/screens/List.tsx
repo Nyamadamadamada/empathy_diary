@@ -6,14 +6,14 @@ import { exampleDiares } from '~/config/example_diares';
 
 function ListDiaryScreen() {
   const [filterTag, setFilterTag] = useState<string | null>(null);
-  const [filterMood, setFilterMood] = useState<string | null>(null);
+  const [filterMood, setFilterMood] = useState<'happy' | 'meh' | 'frown' | null>(null);
 
   const filteredEntries = exampleDiares.filter((entry) => {
     const moodMatch = !filterMood || entry.diary.mood === filterMood;
     return moodMatch;
   });
 
-  const handleMoodClick = (mood: string) => {
+  const handleMoodClick = (mood: 'happy' | 'meh' | 'frown') => {
     setFilterMood(filterMood === mood ? null : mood);
   };
 

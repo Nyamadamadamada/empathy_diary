@@ -2,8 +2,7 @@ import { useState } from 'react';
 import { Trash2, Meh, MoreHorizontal, Copy, Smile, Frown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import DeleteModal from '~/components/share/DeleteModal';
-import { DiaryEntry } from './List';
-
+import { DiaryEntry } from '~/types';
 type Props = {
   entry: DiaryEntry;
   onMoodClick: (mood: string) => void;
@@ -34,7 +33,7 @@ export function DiaryItem({ entry, onMoodClick, handleDelete, handleCopy }: Prop
     <div className="relative">
       <Link
         to={`/history/${entry.id}`}
-        className="flex flex-col sm:flex-row sm:items-start gap-4 p-4 border rounded-2xl shadow hover:shadow-xl"
+        className="flex flex-row items-center md:items-start gap-4 p-4 border rounded-2xl shadow hover:shadow-xl"
       >
         <div
           onClick={(e) => {
@@ -49,12 +48,13 @@ export function DiaryItem({ entry, onMoodClick, handleDelete, handleCopy }: Prop
         </div>
 
         <div className="flex-1 min-w-0">
-          <div className="flex justify-between items-start w-full flex-wrap gap-2">
+          <div className="flex flex-row justify-between items-start w-full  gap-2">
             <div className="min-w-0">
               <h2 className="text-base sm:text-lg font-semibold break-words">{entry.title}</h2>
               <p className="text-xs sm:text-sm text-gray-500">{entry.date}</p>
             </div>
 
+            {/* 3点ドット */}
             <div className="relative">
               <button
                 onClick={(e) => {
@@ -98,7 +98,7 @@ export function DiaryItem({ entry, onMoodClick, handleDelete, handleCopy }: Prop
               )}
             </div>
           </div>
-          <p className="mt-2 text-gray-700 text-sm break-words line-clamp-2 sm:line-clamp-1 max-w-120 truncate">
+          <p className="hidden md:block mt-2 text-gray-700 text-sm break-words line-clamp-2 sm:line-clamp-1 max-w-120 truncate">
             {entry.content}
           </p>
         </div>

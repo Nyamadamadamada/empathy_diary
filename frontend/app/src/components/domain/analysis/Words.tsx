@@ -1,8 +1,26 @@
-const Words = ({ words }) => {
+type Props = {
+  words: {
+    cx: number;
+    cy: number;
+    r: number;
+    fill: string;
+    textColor: string;
+    percentage: number;
+    lineY1Offset: number;
+    lineY2Offset: number;
+    textYOffset: number;
+  }[];
+  size: {
+    width: number;
+    height: number;
+  };
+};
+
+const Words = ({ words, size }: Props) => {
   return (
-    <svg className="mood_chart chart_content" width="500" height="400">
+    <svg className="" width={size.width} height={size.height}>
       {words.map((mood, index) => (
-        <g className="mood_chart" key={index}>
+        <g className="" key={index}>
           <circle
             className={`mood-circle circle-${index + 1}`}
             cx={mood.cx}

@@ -7,7 +7,7 @@ export default function Step3() {
     <div className="mt-[30%] mb-[60%] w-full">
       <div className="max-w-4xl mx-auto p-6 w-full opacity-0  animate-fade-fast delay-500">
         {/* セリフセクション */}
-        <div className="flex items-start space-x-8 w-full">
+        <div className="flex flex-col md:flex-row items-center md:items-start space-x-0 md:space-x-8 w-full animate-fade-fast opacity-0 delay-200">
           <div className="flex flex-col items-center">
             <div className="w-20 h-20 overflow-hidden rounded-full relative flex-shrink-0">
               <img
@@ -28,7 +28,7 @@ export default function Step3() {
           <div className="flex flex-col gap-10 text-center">
             <Link
               to="/chat/step"
-              className="font-bold text-lg px-6 py-4 rounded-full bg-gray-900 text-white hover:bg-gray-500 cursor-pointer transition duration-300"
+              className="btn max-w-[300px] mx-auto font-bold text-lg px-6 py-4 h-full rounded-full bg-emerald-700 text-white cursor-pointer hover:bg-emerald-600/60 transition duration-300"
             >
               日記を作成する
             </Link>

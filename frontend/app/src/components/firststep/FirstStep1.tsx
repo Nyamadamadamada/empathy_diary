@@ -14,7 +14,7 @@ export default function Step1({ handleAddName }: Prop) {
     <div className="my-[55%] w-full">
       <div className="max-w-4xl mx-auto p-6 space-y-8 w-full">
         {/* セリフセクション */}
-        <div className="flex items-start space-x-8 w-full animate-fade-fast">
+        <div className="flex flex-col md:flex-row items-center md:items-start space-x-0 md:space-x-8 w-full animate-fade-fast opacity-0 delay-200">
           <div className="flex flex-col items-center">
             <div className="w-20 h-20 overflow-hidden rounded-full relative flex-shrink-0">
               <img

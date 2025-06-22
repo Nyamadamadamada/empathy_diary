@@ -2,18 +2,21 @@ import { ChevronLeft, Copy, ChevronDown, Smile, Meh, Frown } from 'lucide-react'
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import DiaryEntity from './DiaryEntity';
-import { DiaryEntry } from '../list/List';
-import { EntityData } from '~/components/contexts/EntityContext';
+import { DiaryEntry } from '~/types';
+import { EmotionStore, EntityData } from '~/components/contexts/EntityContext';
+import DiaryEmotion from './DiaryEmotion';
+import EmotionDetail from './EmotionDetail';
 
 interface DiaryDetailProps {
   diary: DiaryEntry;
   entities: EntityData;
+  emotionScore: EmotionStore;
   handleCopy: () => void;
 }
 
 const moodIcons = {
   happy: (
-    <div className="group z-50 relative">
+    <div className="group  relative">
       <Smile className="text-yellow-400 w-8 h-8" />
       {/* SPでアイコンの下に表示、MD以上でアイコンの右に表示 */}
       <div
@@ -26,7 +29,7 @@ const moodIcons = {
     </div>
   ),
   meh: (
-    <div className="group z-50 relative">
+    <div className="group  relative">
       <Meh className="text-gray-400 w-8 h-8" />
       {/* SPでアイコンの下に表示、MD以上でアイコンの右に表示 */}
       <div
@@ -39,7 +42,7 @@ const moodIcons = {
     </div>
   ),
   frown: (
-    <div className="group z-50 relative">
+    <div className="group  relative">
       <Frown className="text-blue-300 w-8 h-8" />
       {/* SPでアイコンの下に表示、MD以上でアイコンの右に表示 */}
       <div
@@ -53,11 +56,11 @@ const moodIcons = {
   ),
 };
 
-export default function DiaryDetail({ diary, handleCopy, entities }: DiaryDetailProps) {
-  const [isOpen, setIsOpen] = useState(false);
+export default function DiaryDetail({ diary, handleCopy, entities, emotionScore }: DiaryDetailProps) {
+  const [isOpen, setIsOpen] = useState(true);
 
   return (
-    <div className="w-full">
+    <div className="w-full mt-10 md:mt-0">
       <div className="flex items-center justify-center">
         <h1 className="relative text-3xl flex gap-2 font-bold text-center text-gray-900">
           {moodIcons[diary.mood]}
@@ -97,7 +100,7 @@ export default function DiaryDetail({ diary, handleCopy, entities }: DiaryDetail
             <div className="flex justify-between items-start">
               <h2 className="text-2xl font-bold mb-2">{diary.title}</h2>
               <div className="flex gap-2 items-center">
-                <div onClick={handleCopy} className="cursor-pointer flex items-center">
+                <div onClick={handleCopy} className="hidden md:flex cursor-pointer  items-center">
                   <Copy className="w-4 h-4" />
                   <span className="text-sm ml-1">コピーする</span>
                 </div>
@@ -109,15 +112,6 @@ export default function DiaryDetail({ diary, handleCopy, entities }: DiaryDetail
                 <span className="text-sm">気持ち：「{diary.emotion}」</span>
               </div>
             </div>
-
-            {/* <div className="flex flex-wrap gap-3 text-sm text-gray-500 mt-1">
-              {diary.tags.map((tag, idx) => (
-                <span key={idx} className="cursor-default">
-                  <span className="text-gray-400 mr-1">#</span>
-                  {tag}
-                </span>
-              ))}
-            </div> */}
           </div>
 
           <hr />
@@ -127,7 +121,13 @@ export default function DiaryDetail({ diary, handleCopy, entities }: DiaryDetail
           </div>
         </div>
       </div>
-      <div className="bg-white text-gray-800 flex flex-col justify-center mx-10 mb-10">
+      <div className="bg-white text-gray-800 flex flex-col justify-center md:mx-10 mt-20 mb-32">
+        <EmotionDetail emotion={diary.emotion} />
+      </div>
+      <div className="bg-white text-gray-800 flex flex-col justify-center md:mx-10 mt-20 mb-32">
+        <DiaryEmotion emotionScore={emotionScore} />
+      </div>
+      <div className="bg-white text-gray-800 flex flex-col justify-center md:mx-10 mb-10">
         <DiaryEntity entities={entities} />
       </div>
 

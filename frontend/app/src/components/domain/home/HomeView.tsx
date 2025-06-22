@@ -10,7 +10,7 @@ function HomeView({ user }: Props) {
     <div className="min-h-screen flex items-center  flex-col  px-4">
       <div className="flex flex-col items-center justify-center w-full mt-20 mb-20 ">
         <div className="flex flex-col items-center ">
-          <div className="w-20 h-20 bg-white relative group overflow-hidden">
+          <div className="w-32 h-32 bg-white relative group overflow-hidden">
             {/* 通常の画像 */}
             <img
               src="/img/mofu/mofu_nomal.png"
@@ -26,12 +26,12 @@ function HomeView({ user }: Props) {
           </div>
           <div className="zenMaru-bold text-center text-yellow-600 text-sm mt-2 relative">モフ</div>
         </div>
-        <span className="text-3xl zenMaru-regular mt-10">こんにちは、{user?.name ?? 'ゲストユーザー'}さん</span>
+        <span className="text-3xl zenMaru-regular mt-6">こんにちは、{user?.name ?? 'ゲストユーザー'}さん</span>
       </div>
       <div className="text-center mt-16">
         <Link
           to="/chat/step"
-          className="font-bold text-lg px-6 py-4 rounded-full bg-gray-900 text-white hover:bg-gray-500 cursor-pointer transition duration-300"
+          className="btn font-bold text-lg px-6 py-4 h-full rounded-full bg-emerald-700 text-white cursor-pointer hover:bg-emerald-600/60 transition duration-300"
         >
           日記を作成する
         </Link>

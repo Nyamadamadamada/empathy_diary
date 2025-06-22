@@ -21,7 +21,7 @@ export default function SidebarList({ diaries, handleLinkClick }: Props) {
                 // 既読状態に更新（外でステート管理している場合）
                 // markAsRead(entry.id);
               }}
-              className="p-2 pe-2 rounded-none lg:rounded-e-2xl text-start relative flex items-center justify-between text-sm ps-6 
+              className="cursor-pointer p-2 pe-2 rounded-none lg:rounded-e-2xl text-start relative flex items-center justify-between text-sm ps-6 
           text-gray-900 hover:bg-gray-100"
             >
               <div>
@@ -44,7 +44,7 @@ export default function SidebarList({ diaries, handleLinkClick }: Props) {
                 // 既読状態に更新（外でステート管理している場合）
                 // markAsRead(entry.id);
               }}
-              className="p-2 pe-2 rounded-none lg:rounded-e-2xl text-start relative flex items-center justify-between text-sm ps-6 
+              className="cursor-pointer p-2 pe-2 rounded-none lg:rounded-e-2xl text-start relative flex items-center justify-between text-sm ps-6 
           text-gray-900 hover:bg-gray-100"
             >
               <div>
@@ -66,7 +66,7 @@ export default function SidebarList({ diaries, handleLinkClick }: Props) {
             onClick={() => {
               handleLinkClick('/history');
             }}
-            className="flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 px-6 py-2"
+            className="cursor-pointer flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 px-6 py-2"
           >
             <span>すべて表示する</span>
           </div>

@@ -17,7 +17,7 @@ export default function Step2({ shownSteps, isLoading, category, optionEvents, h
   };
 
   return (
-    <div className="mb-20">
+    <div className="mb-24 pb-28">
       <div className="max-w-4xl mx-auto p-6 space-y-8 w-full relative">
         {/* ローディングアニメーションはSTEP２の時だけ */}
         {isLoading && (
@@ -48,26 +48,32 @@ export default function Step2({ shownSteps, isLoading, category, optionEvents, h
         )}
         <div className={`flex items-start space-x-8 w-full ${isLoading ? 'pointer-events-none' : ''}`}>
           {/* ローディング中に半透明＋操作不可 */}
-          <div className="flex flex-col items-center animate-fade-fast opacity-0 delay-200">
-            <div className="w-20 h-20 overflow-hidden rounded-full relative flex-shrink-0">
-              <img
-                src="/img/mofu/mofu_nomal.png"
-                alt="キャラアイコン"
-                className="w-full h-full object-cover transform scale-125 translate-y-3"
-              />
+          {/* モフのセリフセクション */}
+          <div className="flex flex-col md:flex-row items-center md:items-start space-x-0 md:space-x-8 w-full animate-fade-fast opacity-0 delay-200">
+            <div className="flex flex-col items-center">
+              <div className="w-20 h-20 overflow-hidden rounded-full relative flex-shrink-0">
+                <img
+                  src="/img/mofu/mofu_nomal.png"
+                  alt="キャラアイコン"
+                  className="w-full h-full object-cover transform scale-125 translate-y-3"
+                />
+              </div>
+              <div className="zenMaru-bold text-center text-yellow-600 text-sm mt-1">モフ</div>
             </div>
-            <div className="zenMaru-bold text-center text-yellow-600 text-sm mt-1">モフ</div>
-          </div>
-          <div className="flex flex-col justify-center mt-2">
-            {category ? (
-              <p className="zenMaru-regular text-xl font-medium leading-[1.8]">
-                <span className="marker font-bold">{category}</span>のことだね。
-                <br />
-                どんなことがあったのかな？
-              </p>
-            ) : (
-              <p className="zenMaru-regular text-xl font-medium leading-[1.8]">どんなことがあったのかな？</p>
-            )}
+
+            <div className="flex flex-col justify-center mt-2">
+              <div className="flex flex-col justify-center mt-2">
+                {category ? (
+                  <p className="zenMaru-regular text-xl font-medium leading-[1.8]">
+                    <span className="marker font-bold">{category}</span>のことだね。
+                    <br />
+                    どんなことがあったのかな？
+                  </p>
+                ) : (
+                  <p className="zenMaru-regular text-xl font-medium leading-[1.8]">どんなことがあったのかな？</p>
+                )}
+              </div>
+            </div>
           </div>
         </div>
         {/* 選択肢セクション */}

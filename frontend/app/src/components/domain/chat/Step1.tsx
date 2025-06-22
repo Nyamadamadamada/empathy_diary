@@ -16,8 +16,8 @@ export default function Step1({ isLoading, categories, handleSelectCategory }: P
       {isLoading && (
         <div className="absolute inset-0 bg-white bg-opacity-60 flex items-center justify-center z-10 rounded-lg" />
       )}
-      {/* セリフセクション */}
-      <div className="flex items-start space-x-8 w-full animate-fade-fast">
+      {/* モフのセリフセクション */}
+      <div className="flex flex-col md:flex-row items-center md:items-start space-x-0 md:space-x-8  w-full animate-fade-fast opacity-0 delay-200">
         <div className="flex flex-col items-center">
           <div className="w-20 h-20 overflow-hidden rounded-full relative flex-shrink-0">
             <img
@@ -44,7 +44,7 @@ export default function Step1({ isLoading, categories, handleSelectCategory }: P
           <div
             key={category.category}
             onClick={() => handleSelectCategory(category.category)}
-            className="relative h-32 rounded-2xl overflow-hidden shadow-lg cursor-pointer group opacity-0 animate-fade-fast delay-500"
+            className="relative h-20 md:h-32 rounded-2xl overflow-hidden shadow-lg cursor-pointer group opacity-0 animate-fade-fast delay-500"
           >
             {/* 背景画像 */}
             <div

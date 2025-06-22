@@ -38,3 +38,25 @@ export type CharaInfo = {
   category: CHARA_TYPE;
   bios: BioItem[];
 };
+
+export type DiaryEntry = {
+  id: string;
+  date: string;
+  title: string;
+  content: string;
+  mood: 'happy' | 'meh' | 'frown';
+  emotion: string;
+  unRead: boolean;
+  reply?: string;
+};
+
+export function getMood(value: string): 'happy' | 'meh' | 'frown' {
+  const valueNumber = Number(value);
+  if (valueNumber < -0.3) {
+    return 'frown'; // ネガティブまたはややネガティブ
+  } else if (valueNumber <= 0.3) {
+    return 'meh'; // ナチュラル
+  } else {
+    return 'happy'; // ややポジティブまたはポジティブ
+  }
+}

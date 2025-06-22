@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { DiaryEntry } from '~/components/domain/list/List';
+import { DiaryEntry } from '~/types';
 const apiBase = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8004/api';
 
 export const useDiary = (diaryId) => {

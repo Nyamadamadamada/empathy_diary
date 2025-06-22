@@ -18,7 +18,6 @@ import { useUser } from '../contexts/UserContext';
 import { UserDiary, useUserDiary } from '../contexts/EntityContext';
 import Thinking from '../domain/chat/Thinking';
 import { fetchReply } from '~/api/fetchReply';
-import { moodMap } from '~/config/emotion';
 
 function Chat() {
   const [shownSteps, setShownSteps] = useState<STEP_TYPE[]>([STEP.STEP1]);
@@ -31,6 +30,7 @@ function Chat() {
   const [optionEvents, setOptionEvents] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isFinish, setIsFinish] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
   const { setUserDiary } = useUserDiary();
   const { user } = useUser();
 
@@ -68,6 +68,7 @@ function Chat() {
     setCategory(selected);
     addStep(STEP.STEP2);
   };
+
   const handleAddEvent = async (input: string) => {
     setEvent(input);
     setIsLoading(true);
@@ -75,7 +76,7 @@ function Chat() {
     const eotionNode = await fetchEmotion(input); // テキストを渡して関数を呼び出す
 
     setPredictedEmotion(eotionNode);
-    if (eotionNode) {
+    if (eotionNode && emotion === '') {
       setEmotion(eotionNode.emotion);
     }
 
@@ -94,7 +95,11 @@ function Chat() {
     setIsLoading(false);
   };
   const handleFinish = async () => {
-    console.log('日記作成を終了します');
+    if (mainText.length > 1000) {
+      console.error('1000文字以内で入力してください。');
+      setIsError(true);
+      return;
+    }
     setIsFinish(true);
     const resultReply = await fetchReply(emotion, mainText, user.name);
 
@@ -106,7 +111,7 @@ function Chat() {
         title,
         date: dateString,
         content: mainText,
-        mood: moodMap[emotion],
+        mood: resultReply.mood,
         emotion,
         reply: resultReply.reply,
         unRead: true,
@@ -117,6 +122,10 @@ function Chat() {
         LOCATION: new Set(),
         CONSUMER_GOOD: new Set(),
         EVENT: new Set(),
+      },
+      emotionScore: {
+        score: resultReply?.emotionScore.score,
+        magnitude: resultReply?.emotionScore.magnitude,
       },
     };
     setUserDiary(diary);
@@ -169,6 +178,7 @@ function Chat() {
                     setTitle={setTitle}
                     mainText={mainText}
                     setMainText={setMainText}
+                    setIsError={setIsError}
                   />
                 )}
               </div>

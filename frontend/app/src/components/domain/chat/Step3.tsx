@@ -128,7 +128,7 @@ export default function Step3({
 
   return (
     <div className={`mb-40 flex flex-col justify-center px-0 sm:px-4 sm:m-4 ${isLoading ? 'pointer-events-none' : ''}`}>
-      <div className="max-w-full relative sm:max-w-4xl mx-auto p-4 sm:p-6 space-y-6 sm:space-y-8 w-full wrap-break-word">
+      <div className="max-w-full relative sm:max-w-4xl mx-auto  sm:p-6 space-y-6 sm:space-y-8 w-full wrap-break-word">
         {isLoading && (
           <div className="absolute  inset-0 bg-white bg-opacity-60 flex  flex-col items-center justify-center z-50 rounded-lg">
             {/* ローディングオーバーレイ */}
@@ -152,7 +152,7 @@ export default function Step3({
           </div>
         )}
         {/* モフのセリフ */}
-        <div className="flex flex-col sm:flex-row items-start sm:space-x-8 space-y-4 sm:space-y-8 w-full animate-fade-fast opacity-0 delay-200">
+        <div className="flex flex-col md:flex-row items-center md:items-start space-x-0 md:space-x-8 w-full animate-fade-fast opacity-0 delay-200">
           <div className="flex flex-col items-center">
             <div className="w-20 h-20 overflow-hidden rounded-full relative flex-shrink-0">
               <img
@@ -163,7 +163,8 @@ export default function Step3({
             </div>
             <div className="zenMaru-bold text-center text-yellow-600 text-sm mt-1">モフ</div>
           </div>
-          <div className="flex flex-col justify-center">
+
+          <div className="flex flex-col justify-center mt-2">
             {selectedEvent ? (
               <p className="zenMaru-regular text-xl  leading-[1.8]">
                 「<span className="marker font-bold wrap-break-word">{selectedEvent}</span>」ことがあったんだね。
@@ -188,6 +189,7 @@ export default function Step3({
               className="w-full sm:w-36 text-lg font-bold text-gray-900 bg-transparent focus:outline-none placeholder-gray-400 resize-none"
               type="text"
               value={emotion}
+              maxLength={50}
               onChange={(e) => setEmotion(e.target.value)}
               placeholder="選択 or 自由記入"
             />

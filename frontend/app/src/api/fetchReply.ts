@@ -1,11 +1,14 @@
-import { EntityData } from '~/components/contexts/EntityContext';
+import { EmotionStore, EntityData } from '~/components/contexts/EntityContext';
 import { addNewlineAfterPeriod } from '~/hooks';
+import { getMood } from '~/types';
 
 const apiBase = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8004/api';
 
 export type FetchReplyType = {
   reply: string;
   entities: EntityData;
+  emotionScore: EmotionStore;
+  mood: 'happy' | 'meh' | 'frown';
 };
 /**
  * モフの返事と感情分析結果を返す
@@ -26,8 +29,6 @@ export const fetchReply = async (emotion: string, text: string, userName: string
     }
 
     const data = await res.json();
-    console.log('戻り値');
-    console.log(data);
     const entityData: EntityData = {
       PERSON: new Set(data.entities.PERSON),
       ORGANIZATION: new Set(data.entities.ORGANIZATION),
@@ -35,11 +36,18 @@ export const fetchReply = async (emotion: string, text: string, userName: string
       CONSUMER_GOOD: new Set(data.entities.CONSUMER_GOOD),
       EVENT: new Set(data.entities.EVENT),
     };
-    console.log(addNewlineAfterPeriod(data.reply));
 
+    // ネガティブな話題の場合、絶対値が低くなりがちなので、調節する
+    let adjustedEmotionScore = data.emotion_score.score ?? 0;
+    if (adjustedEmotionScore < 0) {
+      adjustedEmotionScore -= 0.2;
+    }
+    const reply = data.reply.replace(/\r?\n/g, '');
     return {
-      reply: addNewlineAfterPeriod((text = data.reply)),
+      reply: addNewlineAfterPeriod(reply),
       entities: entityData,
+      emotionScore: { score: adjustedEmotionScore, magnitude: data.emotion_score.magnitude },
+      mood: getMood(adjustedEmotionScore ?? 0),
     };
   } catch (err) {
     console.error('Error fetching emotion:', err);
@@ -52,6 +60,11 @@ export const fetchReply = async (emotion: string, text: string, userName: string
         CONSUMER_GOOD: new Set(),
         EVENT: new Set(),
       },
+      emotionScore: {
+        score: 0,
+        magnitude: 0,
+      },
+      mood: 'meh',
     };
   }
 };
