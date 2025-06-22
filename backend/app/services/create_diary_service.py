@@ -57,9 +57,6 @@ textから50字程度の日記のタイトルを作成してください。な�
             )
             data: OneLineText = response.parsed
 
-            print("テキスト")
-            print(data.text)
-
             return data.text
 
         except Exception as e:

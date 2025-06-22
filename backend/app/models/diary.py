@@ -20,7 +20,7 @@ class TextInfo(BaseModel):
 
 
 class OneLineText(BaseModel):
-    text: str = Field(..., example="こんにちは！", max_length=100)
+    text: str = Field(..., example="こんにちは！")
 
 
 class Title(BaseModel):

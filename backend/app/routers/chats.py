@@ -25,7 +25,7 @@ def judge_emotion(
     text: OneLineText, service: EmotionClassifier = Depends(get_emotion_classifer)
 ):
     # TODO: 節約
-    return GeminiResponseEmotion(id="HAPPY")
+    # return GeminiResponseEmotion(id="HAPPY")
     return service.classify_emotion(text)
 
 
@@ -34,10 +34,10 @@ async def create_diary(
     text_info: TextInfo, service: CreateDiary = Depends(get_create_diary)
 ):
     # TODO: 節約
-    return GuessDiary(
-        title="最高の一日",
-        text="こんにちは。今日は良い天気ですね",
-    )
+    # return GuessDiary(
+    #     title="最高の一日",
+    #     text="こんにちは。今日は良い天気ですね",
+    # )
 
     try:
         async with asyncio.TaskGroup() as tg:
@@ -58,16 +58,16 @@ async def create_reply(
     text_info: TextInfo, service: CreateReply = Depends(get_create_reply)
 ):
     # TODO: 節約
-    return Reply(
-        reply="こんにちは。今日は良い天気ですね。こんにちは。今日は良い天気ですね。こんにちは。今日は良い天気ですね。",
-        entities={
-            "PERSON": ["両親", "家族", "母", "父", "虜"],
-            "ORGANIZATION": ["イオン"],
-            "CONSUMER_GOOD": ["かき氷", "氷", "ふわふわかき氷", "箱", "機械"],
-            "EVENT": ["攻防戦", "買い物"],
-        },
-        emotion_score=EmotionScore(score=-0.2, magnitude=3.6),
-    )
+    # return Reply(
+    #     reply="こんにちは。今日は良い天気ですね。こんにちは。今日は良い天気ですね。こんにちは。今日は良い天気ですね。",
+    #     entities={
+    #         "PERSON": ["両親", "家族", "母", "父", "虜"],
+    #         "ORGANIZATION": ["イオン"],
+    #         "CONSUMER_GOOD": ["かき氷", "氷", "ふわふわかき氷", "箱", "機械"],
+    #         "EVENT": ["攻防戦", "買い物"],
+    #     },
+    #     emotion_score=EmotionScore(score=-0.2, magnitude=3.6),
+    # )
 
     reply = ""
     entities = None

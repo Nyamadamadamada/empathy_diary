@@ -9,7 +9,7 @@ type UserContextType = {
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<User>({ name: 'ニッキー', age: 32, ageRange: '35_39', gender: '男性' });
+  const [user, setUser] = useState<User>({ name: 'ニッキー', age: 20, ageRange: '20_24', gender: '性別不明' });
   return <UserContext.Provider value={{ user, setUser }}>{children}</UserContext.Provider>;
 };
 
