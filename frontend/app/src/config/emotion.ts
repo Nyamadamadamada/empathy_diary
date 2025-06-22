@@ -332,7 +332,10 @@ export const emotionMetaMap: Record<EMOTION_TYPE, EmotionMeta> = {
     borderColor: '#ea580c',
     highlightColor: '#fb923c',
     imageColor: 'shadow-orange-500/50',
-    description: '好奇心や探求心を刺激される感情です。新しい情報や経験に対する前向きな気持ちです。',
+    description: `
+    未来に意識を向けた感情です。多くの場合、「不安」や「期待」など他の感情が混ざります。
+    不安な未来を考えてしまう時、ポジティブなシナリオを描く「成功のイメージトレーニング」を行うことで、可能性を信じて前向きに進むことができます。
+    `,
     reverse: {
       img: '/img/emotions/surprised.png', // 関心の反対は驚き/無関心
       title: '驚き',
