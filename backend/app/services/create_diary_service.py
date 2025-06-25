@@ -61,7 +61,7 @@ textから50字程度の日記のタイトルを作成してください。な�
 
         except Exception as e:
             # エラーが発生した場合、空のインスタンスを返す
-            print(f"Error classifying emotion: {e}. Returning empty OneLineText.")
+            print(f"Error create_diary: {e}. Returning empty OneLineText.")
             return ""
 
     async def create_diary_title(self, text_info: TextInfo) -> str:

@@ -41,7 +41,7 @@ const FirstSettings = () => {
     setAge(inputAge);
     setAgeRange(inputAgeRange);
     setUser({ name, age: inputAge, ageRange: inputAgeRange, gender: inputGender });
-    console.log(name, inputAge, inputAgeRange, inputGender);
+    // console.log(name, inputAge, inputAgeRange, inputGender);
     addStep(FIRST_STEP.STEP3);
   };
 

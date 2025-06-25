@@ -1,4 +1,4 @@
-import { ChevronLeft, Copy, ChevronDown, Smile, Meh, Frown } from 'lucide-react';
+import { ChevronLeft, ChevronDown, Smile, Meh, Frown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import DiaryEntity from './DiaryEntity';
@@ -98,13 +98,7 @@ export default function DiaryDetail({ diary, handleCopy, entities, emotionScore 
         <div className="w-full border rounded-2xl shadow p-8">
           <div className="mb-4">
             <div className="flex justify-between items-start">
-              <h2 className="text-2xl font-bold mb-2">{diary.title}</h2>
-              <div className="flex gap-2 items-center">
-                <div onClick={handleCopy} className="hidden md:flex cursor-pointer  items-center">
-                  <Copy className="w-4 h-4" />
-                  <span className="text-sm ml-1">コピーする</span>
-                </div>
-              </div>
+              <h2 className="text-2xl font-bold mb-2 wrap-break-word w-full">{diary.title}</h2>
             </div>
 
             <div className="flex items-center text-sm text-gray-500 gap-4 mb-2">
@@ -116,7 +110,7 @@ export default function DiaryDetail({ diary, handleCopy, entities, emotionScore 
 
           <hr />
 
-          <div className="my-6 whitespace-pre-wrap text-base honokaMaru font-serif leading-[1.8rem]">
+          <div className="my-6 text-base honokaMaru font-serif leading-[1.8rem] wrap-break-word w-full">
             {diary.content}
           </div>
         </div>

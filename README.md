@@ -9,8 +9,8 @@
 </p>
 
 <p align="center">
-  <a href="https://your-youtube-link.com"><img src="https://img.shields.io/badge/🎥-Demo%20Movie-red?style=flat-square"></a>
-  <a href="https://your-zenn-link.com"><img src="https://img.shields.io/badge/Zenn-解説記事-blue?style=flat-square&logo=zenn"></a>
+  <a href="https://youtu.be/koVrE56KlWs"><img src="https://img.shields.io/badge/🎥-Demo%20Movie-red?style=flat-square"></a>
+  <a href="https://zenn.dev/yamadamadamada/articles/2037f9bad4775c"><img src="https://img.shields.io/badge/Zenn-解説記事-blue?style=flat-square&logo=zenn"></a>
   <a href="https://github.com/yourusername/rakuraku-diary"><img src="https://img.shields.io/github/stars/yourusername/rakuraku-diary?style=social"></a>
 </p>
 
@@ -18,15 +18,9 @@
 
 ## 🌐 アクセスリンク
 
-- 📺 [YouTube デモ動画](https://your-youtube-link.com)
-- ✍️ [Zenn 解説記事](https://your-zenn-link.com)
-- 🌐 [デプロイ済み Web アプリ](https://your-app-link.com)
-
-<br>
-
-## 🧰 システムアーキテクチャ図
-
-  <img src="./docs/img/fig.png" alt="構成図" >
+- 📺 [YouTube デモ動画](https://youtu.be/koVrE56KlWs)
+- ✍️ [Zenn 解説記事](https://zenn.dev/yamadamadamada/articles/2037f9bad4775c)
+- 🌐 [デプロイ済み Web アプリ](https://frontend-340630245980.asia-northeast1.run.app/first-setting)
 
 <br>
 
@@ -40,16 +34,14 @@
 #### フロントエンド起動
 
 ```bash
-cd frontend
-npm install
-npm run dev
+make frontend-dev
 ```
 
 #### バックエンド起動
 
 ```bash
-cd backend
-docker compose up -d
+make backend-setup
+make backend-dev
 ```
 
 ## 🐾 Special Thanks

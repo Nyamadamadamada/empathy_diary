@@ -1,22 +1,15 @@
 .PHONY: backend-deploy frontend-build frontend-local-server frontend-deploy
 
+# frontend
+# フロントエンドの開発サーバーを起動
 frontend-dev:
-	@echo "--- フロントエンドの開発サーバーを起動中 ---"
 	cd frontend/app && \
 	npm run dev
 
-
-# バックエンドをGoogle Cloud Runにデプロイ
-backend-deploy:
-	@echo "--- バックエンドをデプロイ中 ---"
+backend-setup:
 	cd backend && \
-	gcloud run deploy backend \
-	 --source=. \
-	 --region=asia-northeast1 \
-	 --platform=managed \
-	 --allow-unauthenticated \
-	 --quiet
-	@echo "--- バックエンドのデプロイが完了しました ---"
+	cp .env.local.dist .env && \
+	docker compose build
 
 # Reactをビルド
 # distが生成される
@@ -40,3 +33,21 @@ frontend-deploy:
 	 --platform=managed \
 	 --allow-unauthenticated \
 	 --quiet
+
+# backend
+# バックエンドの開発サーバーを起動
+backend-dev:
+	cd backend && \
+	docker compose up -d
+
+# バックエンドをGoogle Cloud Runにデプロイ
+backend-deploy:
+	@echo "--- バックエンドをデプロイ中 ---"
+	cd backend && \
+	gcloud run deploy backend \
+	 --source=. \
+	 --region=asia-northeast1 \
+	 --platform=managed \
+	 --allow-unauthenticated \
+	 --quiet
+	@echo "--- バックエンドのデプロイが完了しました ---"

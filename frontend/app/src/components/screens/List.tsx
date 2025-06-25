@@ -28,7 +28,7 @@ function ListDiaryScreen() {
 
   const handleDelete = (diaryId: number) => {
     // 削除処理
-    console.log(`${diaryId}を削除する`);
+    // console.log(`${diaryId}を削除する`);
   };
   const handleCopy = (text: string) => {
     navigator.clipboard.writeText(text);

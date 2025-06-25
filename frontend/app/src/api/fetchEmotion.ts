@@ -26,8 +26,8 @@ export const fetchEmotion = async (text: string): Promise<EmotionNode | null> =>
     }
 
     const data = await res.json();
-    console.log('戻り値');
-    console.log(data);
+    // console.log('戻り値');
+    // console.log(data);
 
     // IDとラベルが存在するかチェック
     if (idLabelMap[data.id]) {
