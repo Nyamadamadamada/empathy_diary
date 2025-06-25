@@ -9,11 +9,10 @@
 </p>
 
 <p align="center">
-  <a href="https://youtu.be/koVrE56KlWs"><img src="https://img.shields.io/badge/🎥-Demo%20Movie-red?style=flat-square"></a>
-  <a href="https://zenn.dev/yamadamadamada/articles/2037f9bad4775c"><img src="https://img.shields.io/badge/Zenn-解説記事-blue?style=flat-square&logo=zenn"></a>
-  <a href="https://github.com/yourusername/rakuraku-diary"><img src="https://img.shields.io/github/stars/yourusername/rakuraku-diary?style=social"></a>
+  <a href="https://youtu.be/koVrE56KlWs" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/🎥-Demo%20Movie-red?style=flat-square"></a>
+  <a href="https://zenn.dev/yamadamadamada/articles/2037f9bad4775c" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/Zenn-解説記事-blue?style=flat-square&logo=zenn"></a>
+  <a href="https://github.com/yourusername/rakuraku-diary" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/github/stars/yourusername/rakuraku-diary?style=social"></a>
 </p>
-
 <br>
 
 ## 🌐 アクセスリンク
