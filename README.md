@@ -19,7 +19,7 @@
 
 - 📺 [YouTube デモ動画](https://youtu.be/koVrE56KlWs)
 - ✍️ [Zenn 解説記事](https://zenn.dev/yamadamadamada/articles/2037f9bad4775c)
-- 🌐 [デプロイ済み Web アプリ](https://frontend-340630245980.asia-northeast1.run.app/first-setting)
+- 🌐 [デプロイ済み Web アプリ](https://frontend-8279078048.asia-northeast1.run.app/first-setting)
 
 <br>
 

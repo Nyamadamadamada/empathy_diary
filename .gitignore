@@ -79,4 +79,4 @@ backend/credentials.json
 
 成果物/
 音声/
-frontend/.env.production
+frontend/app/.env.production

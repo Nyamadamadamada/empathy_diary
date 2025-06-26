@@ -14,7 +14,7 @@ APP_ENV = os.getenv("APP_ENV", "development")
 
 if APP_ENV == "production":
     origins = [
-        "https://frontend-340630245980.asia-northeast1.run.app",
+        "https://frontend-8279078048.asia-northeast1.run.app",
     ]
 else:  # development またはその他の環境
     origins = [
