@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, KeyboardEvent, Dispatch, SetStateAction } from 'react';
 import { Network, Position } from 'vis-network';
 import { DataSet } from 'vis-data';
 import { initialData, idLabelMap, emotionGraphMap, getEmotionGraphData, isEmotion } from '~/config/emotion';
@@ -10,7 +10,7 @@ type Prop = {
   selectedEvent: string;
   emotion: string;
   predictedEmotion: EmotionNode | null;
-  setEmotion: React.Dispatch<React.SetStateAction<string>>;
+  setEmotion: Dispatch<SetStateAction<string>>;
   handleSelectEmotion: () => void;
 };
 
@@ -77,7 +77,6 @@ export default function Step3({
         if (!predictedEmotion) return;
         // 初期値が１層目の場合
         if (isEmotion(predictedEmotion.id)) {
-          console.log('１層目');
           network?.selectNodes([predictedEmotion.id]);
           return;
         }
@@ -125,6 +124,13 @@ export default function Step3({
       network = null;
     };
   }, []);
+
+  // Enterキーが押された時のハンドラ
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && emotion.trim() !== '') {
+      handleSelectEmotion();
+    }
+  };
 
   return (
     <div className={`mb-40 flex flex-col justify-center px-0 sm:px-4 sm:m-4 ${isLoading ? 'pointer-events-none' : ''}`}>
@@ -188,6 +194,7 @@ export default function Step3({
             <input
               className="w-full sm:w-36 text-lg font-bold text-gray-900 bg-transparent focus:outline-none placeholder-gray-400 resize-none"
               type="text"
+              onKeyDown={handleKeyDown}
               value={emotion}
               maxLength={50}
               onChange={(e) => setEmotion(e.target.value)}

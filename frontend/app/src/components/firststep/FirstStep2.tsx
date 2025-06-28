@@ -12,6 +12,7 @@ export default function Step2({ name, handleAddGenderAge }: Prop) {
 
   const handleCheck = () => {
     const ageNum = Number(age);
+
     if (!age || isNaN(ageNum) || ageNum < 12) {
       setError('年齢は12歳以上から可能です。');
       return;

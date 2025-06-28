@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, KeyboardEvent } from 'react';
 import TextWatchButton from '~/components/share/TextWatchButton';
 import { STEP_TYPE, STEP } from '~/types/step';
 
@@ -15,7 +15,12 @@ export default function Step2({ shownSteps, isLoading, category, optionEvents, h
   const handleAddClick = (text: string) => {
     setCustomInput(text);
   };
-
+  // Enterキーが押された時のハンドラ
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && customInput.trim() !== '') {
+      handleAddEvent(customInput);
+    }
+  };
   return (
     <div className="mb-24 pb-28">
       <div className="max-w-4xl mx-auto p-6 space-y-8 w-full relative">
@@ -100,6 +105,7 @@ export default function Step2({ shownSteps, isLoading, category, optionEvents, h
             value={customInput}
             onChange={(e) => handleAddClick(e.target.value)}
             maxLength={100}
+            onKeyDown={handleKeyDown}
             placeholder="100字まで自由入力"
             className="flex-1 rounded-full px-4 py-2 border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
             disabled={isLoading}

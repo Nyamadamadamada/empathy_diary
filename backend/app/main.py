@@ -22,6 +22,7 @@ else:  # development またはその他の環境
         "http://localhost:4173",
         "http://localhost:8080",
     ]
+    print("CORS設定: 開発環境用のオリジンを許可しています。")
 
 app.add_middleware(
     CORSMiddleware,

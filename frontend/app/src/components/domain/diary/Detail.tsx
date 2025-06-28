@@ -110,7 +110,7 @@ export default function DiaryDetail({ diary, handleCopy, entities, emotionScore 
 
           <hr />
 
-          <div className="my-6 text-base honokaMaru font-serif leading-[1.8rem] wrap-break-word w-full">
+          <div className="my-6 text-base honokaMaru font-serif leading-[1.8rem] wrap-break-word w-full whitespace-pre-wrap">
             {diary.content}
           </div>
         </div>
