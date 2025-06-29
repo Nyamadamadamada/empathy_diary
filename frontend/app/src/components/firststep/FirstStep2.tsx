@@ -53,7 +53,10 @@ export default function Step2({ name, handleAddGenderAge }: Prop) {
 
           <div className="flex flex-col justify-center mt-2 zenMaru-regular leading-[1.8] text-xl ">
             <p className="opacity-0 animate-fade-fast">ありがとう。</p>
-            <p className="opacity-0 animate-fade-fast delay-200">「{name}」さんだね。いい名前だね。</p>
+            <p className="opacity-0 animate-fade-fast delay-200 flex flex-col md:flex-row">
+              <span>「{name}」さんだね。</span>
+              <span>いい名前だね。</span>
+            </p>
             <p className="opacity-0 animate-fade-fast delay-400 font-bold">次に、年齢と性別を教えてね。</p>
           </div>
         </div>
@@ -93,7 +96,7 @@ export default function Step2({ name, handleAddGenderAge }: Prop) {
           {/* エラーメッセージ */}
           {error && <div className="text-red-500 text-sm mt-4">{error}</div>}
 
-          <div className="mt-20">
+          <div className="mt-10 md:mt-20">
             <button
               onClick={handleCheck}
               className="bg-slate-600  text-white font-bold px-4 py-2 rounded-full transition-colors hover:bg-gray-900 cursor-pointer"
