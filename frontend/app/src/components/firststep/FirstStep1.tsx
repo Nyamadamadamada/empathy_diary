@@ -16,7 +16,7 @@ export default function FirstStep1({ handleAddName }: Prop) {
     }
   };
   return (
-    <div className="my-[55%] w-full">
+    <div className="my-[20%] md:my-[55%] w-full">
       <div className="max-w-4xl mx-auto p-6 space-y-8 w-full">
         {/* セリフセクション */}
         <div className="flex flex-col md:flex-row items-center md:items-start space-x-0 md:space-x-8 w-full ">
@@ -32,7 +32,10 @@ export default function FirstStep1({ handleAddName }: Prop) {
           </div>
 
           <div className="flex flex-col justify-center mt-2 zenMaru-regular leading-[1.8] text-xl animate-fade-fast opacity-0 delay-200">
-            <p className="">はじめまして。 僕は「モフ」だよ。</p>
+            <p className="flex flex-col md:flex-row">
+              <span>はじめまして。 </span>
+              <span>僕は「モフ」だよ。</span>
+            </p>
             <p className=" ">これから、あなたの日記作りをお手伝いするよ。</p>
             <p className="  font-bold">はじめに、お名前を聞いてもいいかな？</p>
           </div>

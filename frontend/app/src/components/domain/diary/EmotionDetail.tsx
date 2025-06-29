@@ -86,7 +86,7 @@ const EmotionDetail = ({ emotion }: EmotionDetailProps) => {
       <div className="p-5  flex items-start text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
         <h3>感情の説明</h3>
       </div>
-      <div className="relative mx-8 md:mx-0">
+      <div className="relative mx-2 md:mx-0">
         <div className="flex flex-col justify-center items-center mx-auto max-w-screen-lg">
           {/* 選択された感情の場合 */}
           {emotionItem?.image ? (
@@ -96,7 +96,7 @@ const EmotionDetail = ({ emotion }: EmotionDetailProps) => {
                   {isDetail ? (
                     <div className="relative">
                       <div
-                        className={`z-10 max-w-sm rounded-3xl overflow-hidden ${emotionItem.imageColor} shadow-lg  px-8 py-4`}
+                        className={`z-10 max-w-sm rounded-3xl overflow-visible ${emotionItem.imageColor} shadow-lg  px-8 py-4`}
                       >
                         <div className="">
                           <div className="font-bold text-xl mb-4 text-gray-900">「{emotionItem.title}」の解説</div>

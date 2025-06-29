@@ -22,7 +22,7 @@ export default function SidebarContents({ diaries, isSidebarOpen, setIsSidebarOp
           >
             <MenuIcon />
           </button>
-          <div className="z-50 absolute left-12 top-1/2 -translate-y-1/2 bg-gray-700 text-white text-sm px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition pointer-events-none">
+          <div className="z-50 hidden md:block absolute left-12 top-1/2 -translate-y-1/2 bg-gray-700 text-white text-sm px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition pointer-events-none">
             {isSidebarOpen ? 'サイドバーを閉じる' : 'サイドバーを開く'}
           </div>
         </div>
@@ -71,7 +71,7 @@ export default function SidebarContents({ diaries, isSidebarOpen, setIsSidebarOp
             </div>
           </div>
 
-          <div className="flex flex-col w-full px-4">
+          <div className=" flex-col w-full px-4 hidden md:flex">
             <div className="w-full">
               <div
                 onClick={() => {
@@ -80,7 +80,7 @@ export default function SidebarContents({ diaries, isSidebarOpen, setIsSidebarOp
                 className={`relative group flex items-center gap-2 p-2 rounded hover:bg-gray-200 transition-colors duration-200 text-gray-700 cursor-pointer ${isSidebarOpen ? 'md:flex' : 'hidden md:flex'}`}
               >
                 <Settings className="w-5 h-5" />
-                <span className={`text-sm ${isSidebarOpen ? 'md:flex' : 'hidden'}`}>設定</span>
+                <span className={`text-sm  ${isSidebarOpen ? 'md:flex' : 'hidden'}`}>設定</span>
                 {!isSidebarOpen && (
                   <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-gray-700 text-white text-xs px-2 py-1 rounded shadow-lg whitespace-nowrap z-10 opacity-0 group-hover:opacity-100 transition pointer-events-none">
                     設定

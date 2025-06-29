@@ -26,7 +26,10 @@ function HomeView({ user }: Props) {
           </div>
           <div className="zenMaru-bold text-center text-yellow-600 text-sm mt-2 relative">モフ</div>
         </div>
-        <span className="text-3xl zenMaru-regular mt-6">こんにちは、{user?.name ?? 'ゲストユーザー'}さん</span>
+        <p className="text-3xl zenMaru-regular mt-6 flex flex-col md:flex-row">
+          <span className="mb-2 md:mb-0">こんにちは、</span>
+          <span>{user?.name ?? 'ゲストユーザー'}さん</span>
+        </p>
       </div>
       <div className="text-center mt-16">
         <Link

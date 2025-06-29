@@ -227,7 +227,7 @@ code {
 /* モフの手紙の部分 */
 .mohu-note {
   border: solid 1px #e6e6e6;
-  background-color: #fff;
+  background-color: #cef3df47;
 }
 
 .mohu-note-sen {

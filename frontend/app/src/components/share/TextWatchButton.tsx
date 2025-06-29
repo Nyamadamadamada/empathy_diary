@@ -22,7 +22,7 @@ const TextWatchButton: React.FC<TextWatchButtonProps> = ({
       onClick={onClick}
       disabled={!isChanged}
       className={`
-				"bg-slate-600  text-white font-bold text-sm px-4 py-2 rounded-full transition-colors
+				"bg-slate-600 flex-shrink-0 text-white font-bold text-sm px-4 py-2 rounded-full transition-colors
         ${
           isChanged
             ? 'bg-gray-700 text-white hover:bg-gray-900 cursor-pointer'

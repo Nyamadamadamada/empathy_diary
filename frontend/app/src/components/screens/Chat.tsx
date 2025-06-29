@@ -58,7 +58,7 @@ function Chat() {
     const lastStep = shownSteps[shownSteps.length - 1];
     const ref = stepRefs.current[lastStep];
     if (ref) {
-      ref.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      ref.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }, [shownSteps]);
 
@@ -139,7 +139,7 @@ function Chat() {
   return (
     <div className="relative h-screen flex flex-col">
       {/* スクロール可能エリア */}
-      <div className="flex-1 overflow-y-auto px-6 mb-20 m-auto w-full flex justify-center">
+      <div className="flex-1 overflow-y-auto px-6 mb-4 md:mb-20 m-auto w-full flex justify-center">
         <div className=" text-gray-800 max-w-[1000px] flex flex-col w-full gap-32" ref={divRef}>
           {!isFinish &&
             shownSteps.map((step) => (
@@ -189,7 +189,7 @@ function Chat() {
       {/* 固定フッター */}
       {!isFinish && (
         <div className="fixed bottom-0 left-0 w-full flex justify-center bg-white shadow-md">
-          <div className="max-w-[1200px] w-full pt-8 pb-10 px-6 flex justify-between">
+          <div className="max-w-[1200px] w-full pt-4 md:pt-8 pb-4 md:pb-10 px-2 md:px-6 flex justify-between">
             <div
               onClick={() => {
                 setShowReturnDialog(true);

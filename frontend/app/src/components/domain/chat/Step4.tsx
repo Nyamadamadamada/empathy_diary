@@ -63,7 +63,7 @@ export default function Step4({ isLoading, title, setTitle, mainText, setMainTex
         </div>
 
         {/* 編集エリア */}
-        <div className="mt-28 flex max-w-[960px] h-full mx-auto flex-col items-center justify-center px-4 sm:px-6 md:px-10 animate-fade-fast opacity-0 delay-700">
+        <div className="mt-28 flex max-w-[960px] h-full mx-auto flex-col items-center justify-center px-0 sm:px-6 md:px-10 animate-fade-fast opacity-0 delay-700">
           <input
             value={title}
             onChange={(e) => setTitle(e.target.value)}

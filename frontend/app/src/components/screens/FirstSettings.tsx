@@ -49,12 +49,12 @@ const FirstSettings = () => {
     const lastStep = shownSteps[shownSteps.length - 1];
     const ref = stepRefs.current[lastStep];
     if (ref) {
-      ref.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      ref.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }, [shownSteps]);
 
   return (
-    <div className="flex flex-col gap-32 items-center justify-center min-h-screen  p-4">
+    <div className="flex flex-col gap-32 items-center w-full justify-center min-h-screen  p-4">
       {shownSteps.map((step) => (
         <div
           key={step}

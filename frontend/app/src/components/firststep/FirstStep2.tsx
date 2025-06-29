@@ -37,7 +37,7 @@ export default function Step2({ name, handleAddGenderAge }: Prop) {
 
   return (
     <div className="mt-[30%] mb-[60%] w-full">
-      <div className="max-w-4xl mx-auto p-6 space-y-8 w-full">
+      <div className="max-w-4xl  mx-auto p-6  space-y-0 md:space-y-8 w-full">
         {/* セリフセクション */}
         <div className="flex flex-col md:flex-row items-center md:items-start space-x-0 md:space-x-8 w-full animate-fade-fast opacity-0 delay-200">
           <div className="flex flex-col items-center">
@@ -58,8 +58,8 @@ export default function Step2({ name, handleAddGenderAge }: Prop) {
           </div>
         </div>
 
-        <div className="flex flex-col items-center gap-3 mt-6 animate-fade-fast opacity-0 delay-500">
-          <div className="flex items-end gap-4 my-16">
+        <div className="flex flex-col items-center gap-3 mt-0 md:mt-6 animate-fade-fast opacity-0 delay-500">
+          <div className="flex items-end gap-4 my-4 md:my-8">
             <input
               type="number"
               min={12}

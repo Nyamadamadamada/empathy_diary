@@ -11,7 +11,7 @@ type Prop = {
 export default function Step1({ isLoading, categories, handleSelectCategory }: Prop) {
   return (
     <div
-      className={`max-w-4xl mx-auto mt-10 p-6 space-y-8 w-full mb-36 relative ${isLoading ? 'pointer-events-none' : ''}`}
+      className={`max-w-4xl mx-auto mt-10 md:p-6 space-y-8 w-full mb-36 relative ${isLoading ? 'pointer-events-none' : ''}`}
     >
       {isLoading && (
         <div className="absolute inset-0 bg-white bg-opacity-60 flex items-center justify-center z-10 rounded-lg" />

@@ -67,7 +67,7 @@ export default function DiaryDetail({ diary, handleCopy, entities, emotionScore 
           {diary.date}
         </h1>
       </div>
-      <div className="mohu-note mt-10 w-full  shadow p-8 transition-all duration-300">
+      <div className="mohu-note mt-10 w-full shadow px-3 py-8 md:p-8 transition-all duration-300">
         <button onClick={() => setIsOpen(!isOpen)} className="flex items-center justify-between w-full text-left">
           <div className="flex items-center space-x-3">
             <div className="flex flex-col items-center">
@@ -85,7 +85,7 @@ export default function DiaryDetail({ diary, handleCopy, entities, emotionScore 
         </button>
 
         {isOpen && (
-          <div className="zenMaru-regular mohu-note-sen mt-4 animate-fade-fast">
+          <div className="zenMaru-regular mohu-note-sen mt-4 animate-fade-fast text-black">
             <div className="whitespace-pre-wrap">{diary.reply}</div>
             <div className="text-right">
               <br />

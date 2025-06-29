@@ -23,7 +23,7 @@ export default function Step2({ shownSteps, isLoading, category, optionEvents, h
   };
   return (
     <div className="mb-24 pb-28">
-      <div className="max-w-4xl mx-auto p-6 space-y-8 w-full relative">
+      <div className="max-w-4xl mx-auto p-0 md:p-6 space-y-8 w-full relative">
         {/* ローディングアニメーションはSTEP２の時だけ */}
         {isLoading && (
           <div className="absolute inset-0 bg-white bg-opacity-60 flex items-center justify-center z-10 rounded-lg">
